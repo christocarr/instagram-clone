@@ -1,9 +1,7 @@
+import { Image } from './Photo.Styles';
+
 function Photo({ photo }) {
-  return (
-    <div>
-      <img src={photo.urls.thumb} alt={photo.description} />
-    </div>
-  );
+  return <Image src={photo.urls.thumb} alt={photo.description} />;
 }
 
 export default Photo;
