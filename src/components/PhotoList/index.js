@@ -1,14 +1,15 @@
 import Photo from '../Photo';
+import { List, ListItem } from './PhotoList.Styles';
 
 function PhotoList({ photos }) {
   return (
-    <ul>
+    <List>
       {photos.map((photo) => (
-        <li key={photo.id}>
+        <ListItem key={photo.id}>
           <Photo photo={photo} />
-        </li>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }
 
