@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Home, User } from 'pages';
+import { Search } from 'components';
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
           <ul>
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Search />
             </li>
           </ul>
         </nav>
