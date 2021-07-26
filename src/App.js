@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import User from './pages/User';
+import { Home, User, SearchResults } from 'pages';
+import { Search } from 'components';
 
 function App() {
   return (
@@ -11,12 +11,16 @@ function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
+            <li>
+              <Search />
+            </li>
           </ul>
         </nav>
 
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/user/:username" component={User} />
+          <Route path="/search" component={SearchResults} />
         </Switch>
       </div>
     </Router>
