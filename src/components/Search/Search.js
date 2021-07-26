@@ -10,7 +10,7 @@ function Search() {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     setSearchTerm('');
-    history.push(`/search/${searchTerm}`);
+    history.push(`/search/${searchTerm.toLowerCase()}`);
   };
 
   return (
