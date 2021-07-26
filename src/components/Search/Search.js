@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
-
+  const history = useHistory();
   const handleChange = (ev) => {
     setSearchTerm(ev.target.value);
   };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    console.log(searchTerm);
+    setSearchTerm('');
+    history.push(`/search/${searchTerm}`);
   };
 
   return (
