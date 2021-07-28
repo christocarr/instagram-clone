@@ -3,7 +3,7 @@ import { Image } from './Photo.Styles';
 
 function Photo({ photo }) {
   return (
-    <Link to={`/user/${photo.user.username}`}>
+    <Link to={`/users/${photo.user.username}`}>
       <Image src={photo.urls.thumb} alt={photo.description} />
     </Link>
   );
