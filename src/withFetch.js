@@ -28,8 +28,10 @@ function withFetch(Component, requestedUrl) {
         console.log(response.data);
         if (response.data.results) {
           setData([...data, ...response.data.results]);
+          setPage(page + 1);
         }
         setData([...data, ...response.data]);
+
         setPage(page + 1);
       } catch (err) {
         console.error(err);
