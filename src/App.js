@@ -1,31 +1,19 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import withFetch from 'withFetch';
 import { Home, User, SearchResults } from 'pages';
-import { Search } from 'components';
+import { Navbar } from 'components';
 
 const HomeWithFetch = withFetch(Home);
 
 const UserWithFetch = withFetch(User);
 
-const SearchResultsWithFetch = withFetch(
-  SearchResults
-  // `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}&query=${searchTerm}&page=${page}`
-);
+const SearchResultsWithFetch = withFetch(SearchResults);
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Search />
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
 
         <Switch>
           <Route exact path="/" component={HomeWithFetch} />
