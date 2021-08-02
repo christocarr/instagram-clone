@@ -25,7 +25,6 @@ function withFetch(Component, requestedUrl) {
       try {
         const url = getUrl();
         const response = await axios.get(url);
-        console.log(response.data);
         if (response.data.results) {
           setData([...data, ...response.data.results]);
           setPage(page + 1);

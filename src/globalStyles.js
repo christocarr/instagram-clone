@@ -14,6 +14,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+}
 
 `;
 
