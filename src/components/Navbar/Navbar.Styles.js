@@ -15,6 +15,7 @@ export const Ul = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 90%;
+  max-width: 768px;
   margin: 0 auto;
 `;
