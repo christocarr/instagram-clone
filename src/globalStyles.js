@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
 }
@@ -10,3 +13,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+`;
+
+export default GlobalStyle;

@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
-  grid-auto-rows: 200px;
-  max-width: 100%;
-  padding: 0;
-  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: -5px;
+  margin-right: -5px;
 `;
 
 export const ListItem = styled.li`
-  width: 40%;
+  flex: 1 1 auto;
+  margin: 5px;
 `;

@@ -1,6 +1,5 @@
 import InfiniteLoader from 'react-infinite-loader';
-import { PhotoList } from 'components';
-import { Wrapper } from './Home.Styles';
+import { Wrapper, PhotoList } from 'components';
 
 function Home({ data, getPhotos }) {
   return (

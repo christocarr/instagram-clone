@@ -1,12 +1,12 @@
 import InfiniteLoader from 'react-infinite-loader';
-import { PhotoList } from 'components';
+import { Wrapper, PhotoList } from 'components';
 
 function SearchResults({ data, getPhotos }) {
   return (
-    <>
+    <Wrapper>
       <PhotoList photos={data} />
       <InfiniteLoader onVisited={() => getPhotos()} />
-    </>
+    </Wrapper>
   );
 }
 
