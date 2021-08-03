@@ -4,7 +4,7 @@ import { Image } from './Photo.Styles';
 function Photo({ photo }) {
   return (
     <Link to={`/users/${photo.user.username}`}>
-      <Image src={photo.urls.thumb} alt={photo.description} />
+      <Image src={photo.urls.small} alt={photo.description} />
     </Link>
   );
 }
