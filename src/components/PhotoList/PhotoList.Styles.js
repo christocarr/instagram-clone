@@ -4,6 +4,8 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-left: -5px;
+  margin-right: -5px;
 `;
 
 export const ListItem = styled.li`
