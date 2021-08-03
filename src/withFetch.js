@@ -25,12 +25,12 @@ function withFetch(Component, requestedUrl) {
       try {
         const url = getUrl();
         const response = await axios.get(url);
-        if (response.data.results) {
+        if (props.match.path === '/search') {
           setData([...data, ...response.data.results]);
           setPage(page + 1);
+          return;
         }
         setData([...data, ...response.data]);
-
         setPage(page + 1);
       } catch (err) {
         console.error(err);
