@@ -1,8 +1,15 @@
-import { ModalWrapper, ModalContent } from './Modal.Styles';
+import {
+  ModalWrapper,
+  ModalContent,
+  TopNavBar,
+  UserImage,
+  ModalClose,
+  Image,
+} from './Modal.Styles';
 import { withRouter } from 'react-router-dom';
 
 function Modal({ history, location }) {
-  const handleModalWrapperClick = () => {
+  const handleModalClose = () => {
     history.goBack();
   };
 
@@ -12,9 +19,15 @@ function Modal({ history, location }) {
 
   console.log(location.state);
   return (
-    <ModalWrapper role="button" onClick={handleModalWrapperClick}>
+    <ModalWrapper role="button" onClick={handleModalClose}>
       <ModalContent role="button" onClick={handleModalContentClick}>
-        <img src={location.state.imageUrl} alt={location.state.imageAlt} />
+        <TopNavBar>
+          <UserImage src={location.state.profileImage} alt="user image" />
+          <ModalClose role="button" onClick={handleModalClose}>
+            x
+          </ModalClose>
+        </TopNavBar>
+        <Image src={location.state.imageUrl} alt={location.state.imageAlt} />
       </ModalContent>
     </ModalWrapper>
   );
