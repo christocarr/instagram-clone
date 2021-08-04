@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import withFetch from 'withFetch';
 import { Home, User, SearchResults } from 'pages';
-import { Navbar } from 'components';
+import { Navbar, Modal } from 'components';
 import GlobalStyle from 'globalStyles';
 
 const HomeWithFetch = withFetch(Home);
@@ -20,6 +20,7 @@ function App() {
         <Route path="/users/:username" component={UserWithFetch} />
         <Route path="/search" component={SearchResultsWithFetch} />
       </Switch>
+      <Route exact path="/modal/:id" component={Modal} />
     </Router>
   );
 }
