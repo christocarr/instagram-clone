@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { Image } from './Photo.Styles';
 
 function Photo({ photo }) {
-  console.log(photo);
-
   return (
     <>
       {/* <Link to={`/users/${photo.user.username}`}> */}
@@ -14,7 +12,9 @@ function Photo({ photo }) {
             modal: true,
             imageUrl: photo.urls.small,
             imageAlt: photo.description,
-            profileImage: photo.user.profile_image.small,
+            profileImage: photo.user.profile_image.medium,
+            userName: `${photo.user.first_name} ${photo.user.last_name}`,
+            createdAt: photo.created_at,
           },
         }}
       >

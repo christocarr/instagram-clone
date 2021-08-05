@@ -19,6 +19,11 @@ ul {
     padding: 0;
 }
 
+p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
 `;
 
 export default GlobalStyle;
