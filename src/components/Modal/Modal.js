@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ModalWrapper,
   ModalContent,
@@ -6,7 +7,7 @@ import {
   UserProfile,
   UserInfo,
   UserImage,
-  UserName,
+  Name,
   LastUpdated,
   ModalClose,
   Image,
@@ -34,7 +35,6 @@ function Modal({ history, location }) {
     e.stopPropagation();
   };
 
-  console.log(location.state);
   return (
     <ModalWrapper role="button" onClick={handleModalClose}>
       <ModalContent role="button" onClick={handleModalContentClick}>
@@ -43,7 +43,9 @@ function Modal({ history, location }) {
             <UserImage src={location.state.profileImage} alt="user image" />
 
             <UserInfo>
-              <UserName>{location.state.userName}</UserName>
+              <Link to={`/users/${location.state.userName}`}>
+                <Name>{location.state.name}</Name>
+              </Link>
               <LastUpdated>{lastUpdated}</LastUpdated>
             </UserInfo>
           </UserProfile>

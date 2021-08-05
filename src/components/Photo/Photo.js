@@ -4,7 +4,6 @@ import { Image } from './Photo.Styles';
 function Photo({ photo }) {
   return (
     <>
-      {/* <Link to={`/users/${photo.user.username}`}> */}
       <Link
         to={{
           pathname: `/modal/${photo.id}`,
@@ -13,14 +12,15 @@ function Photo({ photo }) {
             imageUrl: photo.urls.small,
             imageAlt: photo.description,
             profileImage: photo.user.profile_image.medium,
-            userName: `${photo.user.first_name} ${photo.user.last_name}`,
+            userName: photo.user.username,
+            name: photo.user.name,
+
             createdAt: photo.created_at,
           },
         }}
       >
         <Image src={photo.urls.small} alt={photo.description} />
       </Link>
-      {/* </Link> */}
     </>
   );
 }

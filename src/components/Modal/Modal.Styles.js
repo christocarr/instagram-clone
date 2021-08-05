@@ -50,7 +50,7 @@ export const UserImage = styled.img`
   border-radius: 0.2em;
 `;
 
-export const UserName = styled.p`
+export const Name = styled.p`
   font-weight: bolder;
 `;
 
