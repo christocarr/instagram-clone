@@ -16,6 +16,7 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

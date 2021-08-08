@@ -25,6 +25,13 @@ function Modal({ history, location }) {
     const hours = Math.floor(diff / 3600) % 24;
 
     setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
+
+    //when modal is open disable scroll
+    if (location.state.modal) document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, []);
 
   const handleModalClose = () => {
