@@ -19,6 +19,16 @@ ul {
     padding: 0;
 }
 
+p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 `;
 
 export default GlobalStyle;
