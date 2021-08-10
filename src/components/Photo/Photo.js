@@ -17,6 +17,7 @@ function Photo({ photo }) {
             userName: photo.user.username,
             name: photo.user.name,
             createdAt: photo.created_at,
+            photoInfo: photo,
           },
         }}
       >

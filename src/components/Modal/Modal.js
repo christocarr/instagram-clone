@@ -56,7 +56,7 @@ function Modal({ history, location }) {
       (img) => img === location.state.imageUrl
     );
     if (!imageExists) {
-      imagesArr.push(location.state.imageUrl);
+      imagesArr.push(location.state.photoInfo);
     }
 
     localStorage.setItem('savedImages', JSON.stringify(imagesArr));

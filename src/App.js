@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from 'react-router-dom';
 import withFetch from 'withFetch';
-import { Home, User, SearchResults } from 'pages';
+import { Home, Saved, User, SearchResults } from 'pages';
 import { Navbar, Modal } from 'components';
 import GlobalStyle from 'globalStyles';
 
@@ -20,6 +20,7 @@ function App() {
       <Navbar />
       <Switch location={background || location}>
         <Route exact path="/" component={HomeWithFetch} />
+        <Route path="/saved" component={Saved} />
         <Route path="/users/:username" component={UserWithFetch} />
         <Route path="/search" component={SearchResultsWithFetch} />
       </Switch>
