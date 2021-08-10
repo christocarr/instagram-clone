@@ -11,6 +11,8 @@ import {
   LastUpdated,
   ModalClose,
   Image,
+  Footer,
+  SaveImage,
 } from './Modal.Styles';
 import { withRouter } from 'react-router-dom';
 
@@ -42,6 +44,10 @@ function Modal({ history, location }) {
     e.stopPropagation();
   };
 
+  const handleImageSave = () => {
+    console.log(location.state.imageUrl);
+  };
+
   return (
     <ModalWrapper role="button" onClick={handleModalClose}>
       <ModalContent role="button" onClick={handleModalContentClick}>
@@ -62,6 +68,9 @@ function Modal({ history, location }) {
           </ModalClose>
         </TopNavBar>
         <Image src={location.state.imageUrl} alt={location.state.imageAlt} />
+        <Footer>
+          <SaveImage onClick={handleImageSave}>Save</SaveImage>
+        </Footer>
       </ModalContent>
     </ModalWrapper>
   );
