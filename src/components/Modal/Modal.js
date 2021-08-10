@@ -45,7 +45,21 @@ function Modal({ history, location }) {
   };
 
   const handleImageSave = () => {
-    console.log(location.state.imageUrl);
+    let imagesArr;
+    if (localStorage.getItem('savedImages') === null) {
+      imagesArr = [];
+    } else {
+      imagesArr = JSON.parse(localStorage.getItem('savedImages'));
+    }
+
+    const imageExists = imagesArr.find(
+      (img) => img === location.state.imageUrl
+    );
+    if (!imageExists) {
+      imagesArr.push(location.state.imageUrl);
+    }
+
+    localStorage.setItem('savedImages', JSON.stringify(imagesArr));
   };
 
   return (
