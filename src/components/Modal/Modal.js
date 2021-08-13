@@ -15,9 +15,11 @@ import {
   SaveImage,
 } from './Modal.Styles';
 import { withRouter } from 'react-router-dom';
+import useLocalStorage from 'utils/useLocalStorage';
 
 function Modal({ history, location }) {
   const [lastUpdated, setLastUpdated] = useState('');
+  const [photos, setPhotos] = useLocalStorage('savedImages', []);
 
   useEffect(() => {
     const dateNow = Date.now();
@@ -44,22 +46,16 @@ function Modal({ history, location }) {
     e.stopPropagation();
   };
 
-  const handleImageSave = () => {
-    let imagesArr;
-    if (localStorage.getItem('savedImages') === null) {
-      imagesArr = [];
-    } else {
-      imagesArr = JSON.parse(localStorage.getItem('savedImages'));
+  const handleSave = (photo) => {
+    const imageExists = photos.find((ph) => ph.id === photo.id);
+    if (imageExists) {
+      const photosArr = photos.filter((ph) => ph.id !== photo.id);
+      setPhotos(photosArr);
     }
-
-    const imageExists = imagesArr.find(
-      (img) => img === location.state.imageUrl
-    );
     if (!imageExists) {
-      imagesArr.push(location.state.photoInfo);
+      const photosArr = [...photos, photo];
+      setPhotos(photosArr);
     }
-
-    localStorage.setItem('savedImages', JSON.stringify(imagesArr));
   };
 
   return (
@@ -83,7 +79,10 @@ function Modal({ history, location }) {
         </TopNavBar>
         <Image src={location.state.imageUrl} alt={location.state.imageAlt} />
         <Footer>
-          <SaveImage onClick={handleImageSave}>Save</SaveImage>
+          <SaveImage onClick={() => handleSave(location.state.photoInfo)}>
+            {/* {isSaved ? ` remove save` : `save`} */}
+            save
+          </SaveImage>
         </Footer>
       </ModalContent>
     </ModalWrapper>

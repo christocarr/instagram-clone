@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
+import useLocalStorage from 'utils/useLocalStorage';
 import { Wrapper, PhotoList } from 'components';
 
-function Saved() {
-  const [data, setData] = useState(
-    JSON.parse(localStorage.getItem('savedImages')) || []
-  );
+function Saved(props) {
+  const [photos, setPhotos] = useLocalStorage('savedImages', []);
+  const [data, setData] = useState([]);
+
   return (
     <Wrapper>
-      <PhotoList photos={data} />
+      <PhotoList photos={photos} />
     </Wrapper>
   );
 }
