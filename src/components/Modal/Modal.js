@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'utils/useLocalStorage';
 import {
   ModalWrapper,
   ModalContent,
   TopNavBar,
   UserProfile,
-  UserInfo,
   UserImage,
+  UserInfo,
   Name,
   LastUpdated,
   ModalClose,
@@ -14,60 +16,63 @@ import {
   Footer,
   SaveImage,
 } from './Modal.Styles';
-import { withRouter } from 'react-router-dom';
-import useLocalStorage from 'utils/useLocalStorage';
 
-function Modal({ history, location }) {
+function Modal({ isOpen, content, setModalOpen }) {
   const [lastUpdated, setLastUpdated] = useState('');
   const [photos, setPhotos] = useLocalStorage('savedImages', []);
 
   useEffect(() => {
-    const dateNow = Date.now();
-    const dateCreated = Date.parse(location.state.createdAt);
+    if (isOpen) {
+      const dateNow = Date.now();
+      const dateCreated = Date.parse(content.created_at);
 
-    let diff = Math.abs(dateNow - dateCreated) / 1000;
-    const hours = Math.floor(diff / 3600) % 24;
+      let diff = Math.abs(dateNow - dateCreated) / 1000;
+      const hours = Math.floor(diff / 3600) % 24;
 
-    setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
+      setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
 
-    //when modal is open disable scroll
-    if (location.state.modal) document.body.style.overflow = 'hidden';
-
+      //when modal is open disable scroll
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, [isOpen]);
 
   const handleModalClose = () => {
-    history.goBack();
+    setModalOpen(false);
   };
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
   };
 
-  const handleSave = (photo) => {
-    const imageExists = photos.find((ph) => ph.id === photo.id);
+  const handleSave = () => {
+    const imageExists = photos.find((ph) => ph.id === content.id);
     if (imageExists) {
-      const photosArr = photos.filter((ph) => ph.id !== photo.id);
+      const photosArr = photos.filter((ph) => ph.id !== content.id);
       setPhotos(photosArr);
     }
     if (!imageExists) {
-      const photosArr = [...photos, photo];
+      const photosArr = [...photos, content];
       setPhotos(photosArr);
     }
   };
 
-  return (
+  if (!isOpen) return null;
+  return createPortal(
     <ModalWrapper role="button" onClick={handleModalClose}>
       <ModalContent role="button" onClick={handleModalContentClick}>
         <TopNavBar>
           <UserProfile>
-            <UserImage src={location.state.profileImage} alt="user image" />
+            <UserImage
+              src={content.user.profile_image.medium}
+              alt="user image"
+            />
 
             <UserInfo>
-              <Link to={`/users/${location.state.userName}`}>
-                <Name>{location.state.name}</Name>
+              <Link to={`/users/${content.user.user_name}`}>
+                <Name>{content.user.name}</Name>
               </Link>
               <LastUpdated>{lastUpdated}</LastUpdated>
             </UserInfo>
@@ -77,16 +82,17 @@ function Modal({ history, location }) {
             x
           </ModalClose>
         </TopNavBar>
-        <Image src={location.state.imageUrl} alt={location.state.imageAlt} />
+        <Image src={content.urls.regular} alt={content.alt_description} />
         <Footer>
-          <SaveImage onClick={() => handleSave(location.state.photoInfo)}>
+          <SaveImage onClick={handleSave}>
             {/* {isSaved ? ` remove save` : `save`} */}
             save
           </SaveImage>
         </Footer>
       </ModalContent>
-    </ModalWrapper>
+    </ModalWrapper>,
+    document.getElementById('modal')
   );
 }
 
-export default withRouter(Modal);
+export default Modal;
