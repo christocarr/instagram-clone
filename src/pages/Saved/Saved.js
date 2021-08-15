@@ -8,7 +8,7 @@ function Saved(props) {
 
   return (
     <Wrapper>
-      <PhotoList photos={photos} />
+      <PhotoList photos={photos} setPhotos={setPhotos} />
     </Wrapper>
   );
 }

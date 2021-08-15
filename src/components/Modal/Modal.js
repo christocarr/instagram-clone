@@ -17,9 +17,8 @@ import {
   SaveImage,
 } from './Modal.Styles';
 
-function Modal({ isOpen, content, setModalOpen }) {
+function Modal({ isOpen, content, setModalOpen, photos, setPhotos }) {
   const [lastUpdated, setLastUpdated] = useState('');
-  const [photos, setPhotos] = useLocalStorage('savedImages', []);
 
   useEffect(() => {
     if (isOpen) {
