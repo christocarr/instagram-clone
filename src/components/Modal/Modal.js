@@ -71,7 +71,7 @@ function Modal({ isOpen, content, setModalOpen }) {
             />
 
             <UserInfo>
-              <Link to={`/users/${content.user.user_name}`}>
+              <Link to={`/users/${content.user.username}`}>
                 <Name>{content.user.name}</Name>
               </Link>
               <LastUpdated>{lastUpdated}</LastUpdated>
