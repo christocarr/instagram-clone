@@ -5,9 +5,20 @@ import { Wrapper, PhotoList } from 'components';
 function Home({ data, getPhotos }) {
   const [photos, setPhotos] = useLocalStorage('savedImages', []);
 
+  const handleSave = (content) => {
+    const imageExists = photos.find((ph) => ph.id === content.id);
+    if (imageExists) {
+      const photosArr = photos.filter((ph) => ph.id !== content.id);
+      setPhotos(photosArr);
+    }
+    if (!imageExists) {
+      const photosArr = [...photos, content];
+      setPhotos(photosArr);
+    }
+  };
   return (
     <Wrapper>
-      <PhotoList photos={data} setPhotos={setPhotos} />
+      <PhotoList photos={data} handleSave={handleSave} />
       <InfiniteLoader onVisited={() => getPhotos()} />
     </Wrapper>
   );

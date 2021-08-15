@@ -17,8 +17,16 @@ import {
   SaveImage,
 } from './Modal.Styles';
 
-function Modal({ isOpen, content, setModalOpen, photos, setPhotos }) {
+function Modal({
+  isOpen,
+  content,
+  setModalOpen,
+  photos,
+  setPhotos,
+  handleSave,
+}) {
   const [lastUpdated, setLastUpdated] = useState('');
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,6 +41,11 @@ function Modal({ isOpen, content, setModalOpen, photos, setPhotos }) {
       //when modal is open disable scroll
       document.body.style.overflow = 'hidden';
     }
+
+    setIsSaved(() => {
+      return;
+    });
+
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -44,18 +57,6 @@ function Modal({ isOpen, content, setModalOpen, photos, setPhotos }) {
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
-  };
-
-  const handleSave = () => {
-    const imageExists = photos.find((ph) => ph.id === content.id);
-    if (imageExists) {
-      const photosArr = photos.filter((ph) => ph.id !== content.id);
-      setPhotos(photosArr);
-    }
-    if (!imageExists) {
-      const photosArr = [...photos, content];
-      setPhotos(photosArr);
-    }
   };
 
   if (!isOpen) return null;
@@ -83,9 +84,8 @@ function Modal({ isOpen, content, setModalOpen, photos, setPhotos }) {
         </TopNavBar>
         <Image src={content.urls.regular} alt={content.alt_description} />
         <Footer>
-          <SaveImage onClick={handleSave}>
-            {/* {isSaved ? ` remove save` : `save`} */}
-            save
+          <SaveImage onClick={() => handleSave(content)}>
+            {isSaved ? ` remove save` : `save`}
           </SaveImage>
         </Footer>
       </ModalContent>

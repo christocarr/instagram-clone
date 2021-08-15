@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Photo, Modal } from 'components';
 import { List, ListItem } from './PhotoList.Styles';
 
-function PhotoList({ photos, setPhotos }) {
+function PhotoList({ photos, setPhotos, handleSave }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
@@ -10,7 +10,6 @@ function PhotoList({ photos, setPhotos }) {
     setModalOpen(true);
     setModalContent(photo);
   };
-  console.log(modalContent);
   return (
     <List>
       {photos.map((photo) => (
@@ -24,6 +23,7 @@ function PhotoList({ photos, setPhotos }) {
         setModalOpen={setModalOpen}
         setPhotos={setPhotos}
         photos={photos}
+        handleSave={handleSave}
       />
     </List>
   );
