@@ -1,5 +1,5 @@
 import useLocalStorage from 'utils/useLocalStorage';
-import SaveImage from 'utils/SaveImage';
+import saveImage from 'utils/saveImage';
 import { Wrapper, PhotoList } from 'components';
 
 function Saved() {
@@ -7,7 +7,7 @@ function Saved() {
 
   return (
     <Wrapper>
-      <PhotoList photos={photos} setPhotos={setPhotos} handleSave={SaveImage} />
+      <PhotoList photos={photos} setPhotos={setPhotos} handleSave={saveImage} />
     </Wrapper>
   );
 }
