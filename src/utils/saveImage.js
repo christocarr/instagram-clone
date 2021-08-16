@@ -14,4 +14,4 @@ function SaveImage(content) {
   }
 }
 
-export default SaveImage;
+export default saveImage;
