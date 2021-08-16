@@ -35,33 +35,3 @@ function useLocalStorage(key, initialValue) {
 }
 
 export default useLocalStorage;
-
-// function useLocalStorage(key, initialValue) {
-//   const serializedInitialVal = JSON.stringify(initialValue);
-//   let storageVal = initialValue;
-//   try {
-//     storageVal = JSON.parse(window.localStorage.getItem(key)) ?? initialValue;
-//   } catch {
-//     window.localStorage.setItem(key, serializedInitialVal);
-//   }
-
-//   const [value, setValue] = useState(storageVal);
-//   const updatedSetValue = useCallback(
-//     (newValue) => {
-//       const serializedNewVal = JSON.stringify(newValue);
-//       if (
-//         serializedNewVal === serializedInitialVal ||
-//         typeof newValue === 'undefined'
-//       ) {
-//         window.localStorage.removeItem(key);
-//       } else {
-//         localStorage.setItem(key, serializedNewVal);
-//       }
-//       setValue(newValue ?? initialValue);
-//     },
-//     [initialValue, serializedInitialVal, key]
-//   );
-//   return [value, updatedSetValue];
-// }
-
-// export default useLocalStorage;
