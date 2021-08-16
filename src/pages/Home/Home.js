@@ -5,7 +5,7 @@ import { Wrapper, PhotoList } from 'components';
 function Home({ data, getPhotos }) {
   return (
     <Wrapper>
-      <PhotoList photos={data} handleSave={SaveImage} />
+      <PhotoList photos={data} handleSave={saveImage} />
       <InfiniteLoader onVisited={() => getPhotos()} />
     </Wrapper>
   );
