@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import useLocalStorage from 'utils/useLocalStorage';
 import {
   ModalWrapper,
   ModalContent,
@@ -41,10 +40,6 @@ function Modal({
       //when modal is open disable scroll
       document.body.style.overflow = 'hidden';
     }
-
-    setIsSaved(() => {
-      return;
-    });
 
     return () => {
       document.body.style.overflow = 'auto';
