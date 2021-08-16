@@ -1,5 +1,5 @@
 import InfiniteLoader from 'react-infinite-loader';
-import SaveImage from 'utils/SaveImage';
+import saveImage from 'utils/saveImage';
 import { Wrapper, PhotoList } from 'components';
 
 function Home({ data, getPhotos }) {
