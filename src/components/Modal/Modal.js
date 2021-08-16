@@ -32,7 +32,7 @@ function Modal({
       const dateNow = Date.now();
       const dateCreated = Date.parse(content.created_at);
 
-      let diff = Math.abs(dateNow - dateCreated) / 1000;
+      const diff = Math.abs(dateNow - dateCreated) / 1000;
       const hours = Math.floor(diff / 3600) % 24;
 
       setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
