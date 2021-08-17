@@ -16,10 +16,10 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 60%;
   border: 1px lightgrey solid;
   border-radius: 0.5em;
   background-color: white;
@@ -65,5 +65,12 @@ export const ModalClose = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  margin-bottom: 1em;
   border-radius: 0.5em;
+`;
+
+export const Footer = styled.div``;
+
+export const SaveImage = styled.div`
+  cursor: pointer;
 `;

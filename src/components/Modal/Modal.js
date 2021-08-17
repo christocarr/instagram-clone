@@ -1,57 +1,73 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import {
   ModalWrapper,
   ModalContent,
   TopNavBar,
   UserProfile,
-  UserInfo,
   UserImage,
+  UserInfo,
   Name,
   LastUpdated,
   ModalClose,
   Image,
+  Footer,
+  SaveImage,
 } from './Modal.Styles';
-import { withRouter } from 'react-router-dom';
 
-function Modal({ history, location }) {
+function Modal({
+  isOpen,
+  content,
+  setModalOpen,
+  photos,
+  setPhotos,
+  handleSave,
+}) {
   const [lastUpdated, setLastUpdated] = useState('');
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    const dateNow = Date.now();
-    const dateCreated = Date.parse(location.state.createdAt);
+    if (isOpen) {
+      const dateNow = Date.now();
+      const dateCreated = Date.parse(content.created_at);
 
-    let diff = Math.abs(dateNow - dateCreated) / 1000;
-    const hours = Math.floor(diff / 3600) % 24;
+      const diff = Math.abs(dateNow - dateCreated) / 1000;
+      const hours = Math.floor(diff / 3600) % 24;
 
-    setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
+      setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
 
-    //when modal is open disable scroll
-    if (location.state.modal) document.body.style.overflow = 'hidden';
+      //when modal is open disable scroll
+      document.body.style.overflow = 'hidden';
+    }
 
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, [isOpen]);
 
   const handleModalClose = () => {
-    history.goBack();
+    setModalOpen(false);
   };
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
   };
 
-  return (
+  if (!isOpen) return null;
+  return createPortal(
     <ModalWrapper role="button" onClick={handleModalClose}>
       <ModalContent role="button" onClick={handleModalContentClick}>
         <TopNavBar>
           <UserProfile>
-            <UserImage src={location.state.profileImage} alt="user image" />
+            <UserImage
+              src={content.user.profile_image.medium}
+              alt="user image"
+            />
 
             <UserInfo>
-              <Link to={`/users/${location.state.userName}`}>
-                <Name>{location.state.name}</Name>
+              <Link to={`/users/${content.user.username}`}>
+                <Name>{content.user.name}</Name>
               </Link>
               <LastUpdated>{lastUpdated}</LastUpdated>
             </UserInfo>
@@ -61,10 +77,16 @@ function Modal({ history, location }) {
             x
           </ModalClose>
         </TopNavBar>
-        <Image src={location.state.imageUrl} alt={location.state.imageAlt} />
+        <Image src={content.urls.regular} alt={content.alt_description} />
+        <Footer>
+          <SaveImage onClick={() => handleSave(content)}>
+            {isSaved ? ` remove save` : `save`}
+          </SaveImage>
+        </Footer>
       </ModalContent>
-    </ModalWrapper>
+    </ModalWrapper>,
+    document.getElementById('modal')
   );
 }
 
-export default withRouter(Modal);
+export default Modal;

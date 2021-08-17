@@ -9,6 +9,9 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/saved">Saved</Link>
+        </li>
+        <li>
           <Search />
         </li>
       </Ul>
