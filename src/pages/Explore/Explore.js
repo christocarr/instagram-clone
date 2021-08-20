@@ -1,6 +1,10 @@
 import { Wrapper, PhotoList } from 'components';
-function Explore() {
-  return <Wrapper>Explore</Wrapper>;
+function Explore({ data }) {
+  return (
+    <Wrapper>
+      <PhotoList photos={data} />
+    </Wrapper>
+  );
 }
 
 export default Explore;

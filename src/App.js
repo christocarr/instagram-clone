@@ -6,6 +6,8 @@ import GlobalStyle from 'globalStyles';
 
 const HomeWithFetch = withFetch(Home);
 
+const ExploreWithFetch = withFetch(Explore);
+
 const UserWithFetch = withFetch(User);
 
 const SearchResultsWithFetch = withFetch(SearchResults);
@@ -21,7 +23,7 @@ function App() {
       <Switch location={background || location}>
         <Route exact path="/" component={HomeWithFetch} />
         <Route path="/saved" component={Saved} />
-        <Route path="/explore" component={Explore} />
+        <Route path="/explore" component={ExploreWithFetch} />
         <Route path="/users/:username" component={UserWithFetch} />
         <Route path="/search" component={SearchResultsWithFetch} />
       </Switch>
