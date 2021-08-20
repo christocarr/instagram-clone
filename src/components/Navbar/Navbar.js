@@ -12,6 +12,9 @@ function Navbar() {
           <Link to="/saved">Saved</Link>
         </li>
         <li>
+          <Link to="/explore">Explore</Link>
+        </li>
+        <li>
           <Search />
         </li>
       </Ul>
