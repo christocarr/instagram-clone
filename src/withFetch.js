@@ -18,6 +18,11 @@ function withFetch(Component, requestedUrl) {
         const searchTerm = splitPath[2];
         return `${baseUrl}${url}/photos/?client_id=${key}&page=${page}&query=${searchTerm}`;
       }
+
+      if (props.match.path === '/explore') {
+        return `${baseUrl}/photos/random/?client_id=${key}&count=30`;
+      }
+
       return `${baseUrl}${url}/photos/?client_id=${key}&page=${page}`;
     };
 
