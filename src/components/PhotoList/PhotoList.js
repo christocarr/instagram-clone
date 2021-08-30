@@ -1,20 +1,31 @@
-import { useState } from 'react';
-import { Photo, Modal } from 'components';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Photo, Modal, Card } from 'components';
 import { List, ListItem } from './PhotoList.Styles';
 
-function PhotoList({ photos, setPhotos, handleSave }) {
+function PhotoList({ photos, setPhotos, handleSave, match }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const [page, setPage] = useState('');
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setPage('home');
+    }
+  }, []);
 
   const handleClick = (photo) => {
     setModalOpen(true);
     setModalContent(photo);
   };
+
   return (
-    <List>
+    <List page={page}>
       {photos.map((photo) => (
-        <ListItem key={photo.id} onClick={() => handleClick(photo)}>
-          <Photo photo={photo} />
+        <ListItem page={page} key={photo.id} onClick={() => handleClick(photo)}>
+          {page === 'home' ? <Card photo={photo} /> : <Photo photo={photo} />}
         </ListItem>
       ))}
       <Modal
