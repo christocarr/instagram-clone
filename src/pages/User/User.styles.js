@@ -28,3 +28,5 @@ export const Posts = styled.p``;
 export const Followers = styled.p``;
 
 export const Following = styled.p``;
+
+export const UserCollections = styled.ul``;

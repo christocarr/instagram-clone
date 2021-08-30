@@ -11,7 +11,9 @@ import {
   Posts,
   Followers,
   Following,
+  UserCollections,
 } from './User.styles';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 function User({ data, getPhotos }) {
   const [userData, setUserData] = useState(null);
@@ -41,6 +43,8 @@ function User({ data, getPhotos }) {
     setFollowing(response.data);
   };
 
+  console.log(data);
+
   return (
     <Wrapper>
       {userData && (
@@ -66,7 +70,13 @@ function User({ data, getPhotos }) {
               </Box>
             </Container>
           </UserProfile>
-
+          {userData.current_user_collections && (
+            <UserCollections>
+              {userData.current_user_collections.map((item) => (
+                <li>{item}</li>
+              ))}
+            </UserCollections>
+          )}
           <PhotoList photos={data} />
           <InfiniteLoader onVisited={() => getPhotos()} />
         </>
