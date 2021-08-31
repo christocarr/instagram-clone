@@ -5,6 +5,7 @@ import { Wrapper, PhotoList } from 'components';
 import {
   UserProfile,
   UserImage,
+  UserName,
   UserLink,
   Container,
   Box,
@@ -25,7 +26,7 @@ function User({ data, getPhotos }) {
 
     if (userData) {
       getFollowers(userData.user.links.followers);
-      getFollowing(data[0].user.links.following);
+      getFollowing(userData.user.links.following);
     }
   }, [data, userData]);
 
@@ -43,18 +44,19 @@ function User({ data, getPhotos }) {
     setFollowing(response.data);
   };
 
-  console.log(data);
-
   return (
     <Wrapper>
       {userData && (
         <>
           <UserProfile>
             <UserImage
-              src={userData.user.profile_image.medium}
+              src={userData.user.profile_image.large}
               alt="unsplash user"
             />
-            <UserLink>{userData.user.portfolio_url}</UserLink>
+            <UserName>{userData.user.name}</UserName>
+            <UserLink href={userData.user.portfolio_url}>
+              {userData.user.portfolio_url}
+            </UserLink>
             <Container>
               <Box>
                 <Posts>{userData.user.total_photos}</Posts>
