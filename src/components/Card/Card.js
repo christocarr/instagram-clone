@@ -37,7 +37,7 @@ function Card({ photo }) {
           </UserInfo>
         </UserProfile>
       </TopNavBar>
-      <Description>{photo.description}</Description>
+      <Description>{photo.alt_description}</Description>
       <Image src={photo.urls.regular} alt={photo.alt_description} />
       <Footer>
         {/* <SaveImage onClick={() => handleSave(photo)}>
