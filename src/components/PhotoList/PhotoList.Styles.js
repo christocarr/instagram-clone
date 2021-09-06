@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const List = styled.ul`
   display: flex;
@@ -11,4 +11,9 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   flex: 1 1 auto;
   margin: 5px;
+  ${(props) =>
+    props.isHome &&
+    css`
+      width: 100%;
+    `}
 `;

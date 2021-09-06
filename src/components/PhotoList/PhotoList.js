@@ -24,7 +24,12 @@ function PhotoList({ photos, setPhotos, handleSave, match }) {
   return (
     <List page={page}>
       {photos.map((photo) => (
-        <ListItem page={page} key={photo.id} onClick={() => handleClick(photo)}>
+        <ListItem
+          page={page}
+          key={photo.id}
+          onClick={() => handleClick(photo)}
+          isHome={page === 'home' ? true : false}
+        >
           {page === 'home' ? <Card photo={photo} /> : <Photo photo={photo} />}
         </ListItem>
       ))}

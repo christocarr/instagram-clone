@@ -6,7 +6,7 @@ export const UserProfile = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  color: lightgrey;
+  color: grey;
 `;
 
 export const UserImage = styled.img`
