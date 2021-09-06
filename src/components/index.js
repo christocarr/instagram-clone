@@ -4,3 +4,4 @@ export { default as Search } from './Search';
 export { default as Navbar } from './Navbar';
 export { default as Wrapper } from './Wrapper';
 export { default as Modal } from './Modal';
+export { default as Card } from './Card';

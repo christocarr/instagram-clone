@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import getLastUpdated from '../../utils/getLastUpdated';
 import {
   ModalWrapper,
   ModalContent,
@@ -29,13 +30,7 @@ function Modal({
 
   useEffect(() => {
     if (isOpen) {
-      const dateNow = Date.now();
-      const dateCreated = Date.parse(content.created_at);
-
-      const diff = Math.abs(dateNow - dateCreated) / 1000;
-      const hours = Math.floor(diff / 3600) % 24;
-
-      setLastUpdated(`${hours} ${hours < 2 ? 'hour' : 'hours'} ago`);
+      setLastUpdated(getLastUpdated(content.created_at));
 
       //when modal is open disable scroll
       document.body.style.overflow = 'hidden';
