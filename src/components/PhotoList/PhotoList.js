@@ -14,6 +14,10 @@ function PhotoList({ photos, setPhotos, handleSave, match }) {
     if (location.pathname === '/') {
       setPage('home');
     }
+
+    if (location.pathname.includes('search')) {
+      setPage('search');
+    }
   }, []);
 
   const handleClick = (photo) => {
@@ -24,12 +28,7 @@ function PhotoList({ photos, setPhotos, handleSave, match }) {
   return (
     <List page={page}>
       {photos.map((photo) => (
-        <ListItem
-          page={page}
-          key={photo.id}
-          onClick={() => handleClick(photo)}
-          isHome={page === 'home' ? true : false}
-        >
+        <ListItem page={page} key={photo.id} onClick={() => handleClick(photo)}>
           {page === 'home' ? <Card photo={photo} /> : <Photo photo={photo} />}
         </ListItem>
       ))}
