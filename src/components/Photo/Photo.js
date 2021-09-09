@@ -1,7 +1,11 @@
-import { Image } from './Photo.Styles';
+import { ImageContainer, Image } from './Photo.Styles';
 
 function Photo({ photo }) {
-  return <Image src={photo.urls.small} alt={photo.description} />;
+  return (
+    <ImageContainer bgColor={photo.color}>
+      <Image src={photo.urls.small} alt={photo.description} />
+    </ImageContainer>
+  );
 }
 
 export default Photo;
