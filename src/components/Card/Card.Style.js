@@ -9,6 +9,7 @@ export const CardContent = styled.div`
   border-radius: 0.5em;
   background-color: white;
   padding: 1em;
+  margin-bottom: 30px;
   box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
   -webkit-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
   -moz-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
