@@ -20,6 +20,10 @@ ul {
     padding: 0;
 }
 
+h2 {
+  margin: 0;
+}
+
 p {
   font-size: 0.8rem;
   margin: 0;
