@@ -14,7 +14,6 @@ import {
   Following,
   UserCollections,
 } from './User.styles';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 function User({ data, getPhotos }) {
   const [userData, setUserData] = useState(null);
