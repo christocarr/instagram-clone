@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom'
 import InfiniteLoader from 'react-infinite-loader';
 import saveImage from 'utils/saveImage';
 import { Wrapper, PhotoList } from 'components';
-import { Header, HeaderDescription, HeaderImageContainer, HeaderImage, HashTag, HeaderPara, Posts, LinkNavigation, LinkContainer } from './SearchResults.styles'
+import { Header, HeaderDescription, HeaderImageContainer, HeaderImage, HashTag, HeaderPara, Posts, LinkNavigation, LinkContainer } from './SearchResults.Styles'
 
 function SearchResults({ data, totalPosts, getPhotos }) {
   const [headerData, setHeaderData] = useState(null)
@@ -16,8 +16,6 @@ function SearchResults({ data, totalPosts, getPhotos }) {
 
 
   }, [data, totalPosts])
-
-  console.log(headerData)
 
   return (
     <Wrapper>
