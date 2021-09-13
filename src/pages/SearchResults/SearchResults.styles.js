@@ -50,14 +50,16 @@ export const LinkNavigation = styled.div`
 
 export const LinkContainer = styled.div`
  justify-self:flex-end;
-  a {
+  button {
+    border-style: none;
     color: grey;
+    font-size: inherit;
+    background-color: #f8f8f8;
+    cursor: pointer;
   }
-  a:first-of-type {
+  button:first-of-type {
     margin-right: 1em;
 
   }
-  a:active {
-    color: black;
-  }
+  
 `

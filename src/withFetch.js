@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function withFetch(Component, requestedUrl) {
+function withFetch(Component) {
   const WithFetch = (props) => {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
+    const [searchType, setSearchType] = useState('photos')
     useEffect(() => {
       getData();
     }, []);
@@ -16,7 +17,7 @@ function withFetch(Component, requestedUrl) {
       if (props.match.path === '/search') {
         const splitPath = props.location.pathname.split('/');
         const searchTerm = splitPath[2];
-        return `${baseUrl}${url}/photos/?client_id=${key}&page=${page}&query=${searchTerm}`;
+        return `${baseUrl}${url}/${searchType}/?client_id=${key}&page=${page}&query=${searchTerm}`;
       }
 
       if (props.match.path === '/explore') {
@@ -27,10 +28,15 @@ function withFetch(Component, requestedUrl) {
     };
 
     const getData = async () => {
+      console.log('get data')
       try {
+        console.log('trying...')
         const url = getUrl();
+        console.log(url)
         const response = await axios.get(url);
+        console.log(response)
         if (props.match.path === '/search') {
+          console.log(data)
           setData([...data, ...response.data.results]);
           setPage(page + 1);
           return;
@@ -46,7 +52,7 @@ function withFetch(Component, requestedUrl) {
       <Component
         {...props}
         data={data}
-        getPhotos={() => getData(requestedUrl)}
+        getPhotos={getData}
       />
     );
   };
