@@ -1,23 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useParams, useRouteMatch } from 'react-router-dom';
 import axios from 'axios';
 
 function withFetch(Component) {
   const WithFetch = (props) => {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
-    const [searchType, setSearchType] = useState('photos')
+
     useEffect(() => {
       getData();
     }, []);
 
-    const getUrl = () => {
+    // const match = useRouteMatch()
+    // console.log('match:', match)
+
+    const getUrl = (type = 'photos') => {
       const { url } = props.match;
+      console.log('url', url)
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const key = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
       if (props.match.path === '/search') {
         const splitPath = props.location.pathname.split('/');
         const searchTerm = splitPath[2];
-        return `${baseUrl}${url}/${searchType}?client_id=${key}&page=${page}&query=${searchTerm}`;
+        return `${baseUrl}${url}/${type}?client_id=${key}&page=${page}&query=${searchTerm}`;
       }
 
       if (props.match.path === '/explore') {
@@ -27,13 +32,25 @@ function withFetch(Component) {
       return `${baseUrl}${url}photos?client_id=${key}&page=${page}`;
     };
 
-    const getData = async () => {
+    const getData = async (type) => {
       try {
-        const url = getUrl();
+        const url = getUrl(type);
+        // console.log(url)
         const response = await axios.get(url);
+        console.log('response:', response)
         if (props.match.path === '/search') {
-          setData([...data, ...response.data.results]);
-          setPage(page + 1);
+          if (type === 'collections') {
+            console.log(type)
+            const newData = response.data.results.map(item => item.cover_photo)
+
+            setData([...data, ...newData])
+
+          }
+          else {
+            setData([...data, ...response.data.results]);
+            setPage(page + 1);
+          }
+
           return;
         }
         setData([...data, ...response.data]);

@@ -29,9 +29,7 @@ function SearchResults({ data, getPhotos }) {
 
   }, [data])
 
-  const handleSearchType = (type) => {
-    // setSearchType(type)
-  }
+  // console.log('in search results', data)
 
   return (
     <Wrapper>
@@ -52,12 +50,13 @@ function SearchResults({ data, getPhotos }) {
       <LinkNavigation>
         Top Posts
         <LinkContainer>
-          <button onClick={() => handleSearchType('photos')}>Photos</button>
-          <button onClick={() => handleSearchType('collections')}>Collections</button>
+          <button onClick={() => getPhotos('photos')}>Photos</button>
+          <button onClick={() => getPhotos('collections')}>Collections</button>
         </LinkContainer>
       </LinkNavigation>
 
       <PhotoList photos={data} handleSave={saveImage} />
+
       <InfiniteLoaderContainer>
         <StyledInfinteLoader onVisited={getPhotos} />
       </InfiniteLoaderContainer>

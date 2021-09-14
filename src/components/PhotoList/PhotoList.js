@@ -25,6 +25,7 @@ function PhotoList({ photos, setPhotos, handleSave, match }) {
     setModalContent(photo);
   };
 
+  console.log(photos)
   return (
     <List page={page}>
       {photos.map((photo) => (
