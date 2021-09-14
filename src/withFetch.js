@@ -17,26 +17,21 @@ function withFetch(Component) {
       if (props.match.path === '/search') {
         const splitPath = props.location.pathname.split('/');
         const searchTerm = splitPath[2];
-        return `${baseUrl}${url}/${searchType}/?client_id=${key}&page=${page}&query=${searchTerm}`;
+        return `${baseUrl}${url}/${searchType}?client_id=${key}&page=${page}&query=${searchTerm}`;
       }
 
       if (props.match.path === '/explore') {
-        return `${baseUrl}/photos/random/?client_id=${key}&count=30`;
+        return `${baseUrl}/photos/random?client_id=${key}&count=30`;
       }
 
-      return `${baseUrl}${url}/photos/?client_id=${key}&page=${page}`;
+      return `${baseUrl}${url}photos?client_id=${key}&page=${page}`;
     };
 
     const getData = async () => {
-      console.log('get data')
       try {
-        console.log('trying...')
         const url = getUrl();
-        console.log(url)
         const response = await axios.get(url);
-        console.log(response)
         if (props.match.path === '/search') {
-          console.log(data)
           setData([...data, ...response.data.results]);
           setPage(page + 1);
           return;
