@@ -24,9 +24,8 @@ export const HeaderImageContainer = styled.div`
   border-radius: 0.3em;
   overflow: hidden;
 
-  background-color: ${props => props.bgColor}
-  `;
-
+  background-color: ${(props) => props.bgColor};
+`;
 
 export const HeaderImage = styled.img`
   width: 100%;
@@ -35,7 +34,7 @@ export const HeaderImage = styled.img`
   object-position: center;
 `;
 
-export const HashTag = styled.h2``
+export const HashTag = styled.h2``;
 
 export const HeaderPara = styled.p``;
 
@@ -48,9 +47,8 @@ export const LinkNavigation = styled.div`
   margin-right: -5px;
 `;
 
-
 export const LinkContainer = styled.div`
- justify-self:flex-end;
+  justify-self: flex-end;
   button {
     border-style: none;
     color: grey;
@@ -60,7 +58,6 @@ export const LinkContainer = styled.div`
   }
   button:first-of-type {
     margin-right: 1em;
-
   }
 `;
 
@@ -69,7 +66,6 @@ export const InfiniteLoaderContainer = styled.div`
   position: relative;
   z-index: -100;
   padding: 2em 0 2em 0;
-
 `;
 
 export const StyledInfinteLoader = styled(InfiniteLoader)`
