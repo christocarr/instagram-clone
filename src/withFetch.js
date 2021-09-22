@@ -11,12 +11,9 @@ function withFetch(Component) {
       getData();
     }, []);
 
-    // const match = useRouteMatch()
-    // console.log('match:', match)
-
     const getUrl = (type = 'photos') => {
       const { url } = props.match;
-      console.log('url', url)
+
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const key = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
       if (props.match.path === '/search') {
@@ -35,18 +32,18 @@ function withFetch(Component) {
     const getData = async (type) => {
       try {
         const url = getUrl(type);
-        // console.log(url)
+        console.log(url);
         const response = await axios.get(url);
-        console.log('response:', response)
+
         if (props.match.path === '/search') {
           if (type === 'collections') {
-            console.log(type)
-            const newData = response.data.results.map(item => item.cover_photo)
+            console.log(type);
+            const newData = response.data.results.map(
+              (item) => item.cover_photo
+            );
 
-            setData([...data, ...newData])
-
-          }
-          else {
+            setData([...data, ...newData]);
+          } else {
             setData([...data, ...response.data.results]);
             setPage(page + 1);
           }
@@ -60,13 +57,7 @@ function withFetch(Component) {
       }
     };
 
-    return (
-      <Component
-        {...props}
-        data={data}
-        getPhotos={getData}
-      />
-    );
+    return <Component {...props} data={data} getPhotos={getData} />;
   };
 
   return WithFetch;

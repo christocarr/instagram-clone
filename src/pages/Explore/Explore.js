@@ -1,10 +1,24 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getExplorePhotos } from '../../store/explorePageReducer/actions';
 import { Wrapper, PhotoList } from 'components';
-function Explore({ data }) {
+
+function Explore({ photos, getExplorePhotos }) {
+  useEffect(() => {
+    getExplorePhotos();
+  }, []);
+
   return (
     <Wrapper>
-      <PhotoList photos={data} />
+      <PhotoList photos={photos} />
     </Wrapper>
   );
 }
 
-export default Explore;
+const mapDispatchToProps = { getExplorePhotos };
+
+const mapStateToProps = (state) => ({
+  photos: state.explorePhotos.explorePhotos,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explore);

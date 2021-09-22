@@ -1,16 +1,27 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-function Search() {
+import { connect } from 'react-redux';
+import {
+  getSearchPhotos,
+  getSearchTerm,
+} from '../../store/searchResultsPageReducer/actions';
+
+function Search({ getSearchPhotos, getSearchTerm }) {
   const [searchTerm, setSearchTerm] = useState('');
+
   const history = useHistory();
+
   const handleChange = (ev) => {
-    setSearchTerm(ev.target.value);
+    setSearchTerm(ev.target.value.toLowerCase());
   };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    getSearchTerm(searchTerm);
+    history.push('/');
+    getSearchPhotos(searchTerm);
     setSearchTerm('');
-    history.push(`/search/${searchTerm.toLowerCase()}`);
+    history.push(`/search/${searchTerm}`);
   };
 
   return (
@@ -20,4 +31,11 @@ function Search() {
   );
 }
 
-export default Search;
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = {
+  getSearchPhotos,
+  getSearchTerm,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

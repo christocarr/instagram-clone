@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getSearchPhotos } from '../../store/searchResultsPageReducer/actions';
 import { useLocation } from 'react-router-dom';
 import InfiniteLoader from 'react-infinite-loader';
 import saveImage from 'utils/saveImage';
@@ -14,54 +16,58 @@ import {
   LinkNavigation,
   LinkContainer,
   InfiniteLoaderContainer,
-  StyledInfinteLoader
-} from './SearchResults.Styles'
+  StyledInfinteLoader,
+} from './SearchResults.Styles';
 
-function SearchResults({ data, getPhotos }) {
-  const [headerData, setHeaderData] = useState(null)
-  const [hashTag, setHashTag] = useState('')
-  const location = useLocation()
+function SearchResults({ data, getSearchPhotos, searchTerm }) {
+  const [headerData, setHeaderData] = useState(null);
+  const [hashTag, setHashTag] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
-    setHeaderData(data[8])
-    setHashTag(location.pathname.split('/')[2])
-
-
-  }, [data])
-
-  // console.log('in search results', data)
+    setHeaderData(data[8]);
+    setHashTag(location.pathname.split('/')[2]);
+  }, [data]);
 
   return (
     <Wrapper>
-
       {headerData && (
         <Header>
           <HeaderImageContainer bgColor={headerData.color}>
-            <HeaderImage src={headerData.urls.regular} alt={headerData.alt_description} />
+            <HeaderImage
+              src={headerData.urls.regular}
+              alt={headerData.alt_description}
+            />
           </HeaderImageContainer>
           <HeaderDescription>
             <HashTag>#{hashTag}</HashTag>
             <HeaderPara>{headerData.description}</HeaderPara>
             <Posts> Posts</Posts>
           </HeaderDescription>
-
         </Header>
       )}
       <LinkNavigation>
         Top Posts
         <LinkContainer>
-          <button onClick={() => getPhotos('photos')}>Photos</button>
-          <button onClick={() => getPhotos('collections')}>Collections</button>
+          {/* <button onClick={() => getPhotos('photos')}>Photos</button>
+          <button onClick={() => getPhotos('collections')}>Collections</button> */}
         </LinkContainer>
       </LinkNavigation>
 
       <PhotoList photos={data} handleSave={saveImage} />
 
       <InfiniteLoaderContainer>
-        <StyledInfinteLoader onVisited={getPhotos} />
+        <StyledInfinteLoader onVisited={() => getSearchPhotos(searchTerm)} />
       </InfiniteLoaderContainer>
-    </Wrapper >
+    </Wrapper>
   );
 }
 
-export default SearchResults;
+const mapDispatchToProps = { getSearchPhotos };
+
+const mapStateToProps = (state) => ({
+  data: state.searchPhotos.searchPhotos,
+  searchTerm: state.searchPhotos.searchTerm,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
