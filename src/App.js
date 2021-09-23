@@ -1,16 +1,7 @@
 import { Switch, Route, useLocation } from 'react-router-dom';
-import withFetch from 'withFetch';
 import { Home, Saved, Explore, User, SearchResults } from 'pages';
 import { Navbar, Modal } from 'components';
 import GlobalStyle from 'globalStyles';
-
-// const HomeWithFetch = withFetch(Home);
-
-// const ExploreWithFetch = withFetch(Explore);
-
-const UserWithFetch = withFetch(User);
-
-// const SearchResultsWithFetch = withFetch(SearchResults);
 
 function App() {
   const location = useLocation();
@@ -24,7 +15,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/saved" component={Saved} />
         <Route path="/explore" component={Explore} />
-        <Route path="/users/:username" component={UserWithFetch} />
+        <Route path="/users/:username" component={User} />
         <Route path="/search/:searchTerm" component={SearchResults} />
       </Switch>
       {background && <Route path="/modal/:id" component={Modal} />}
