@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+// import saveImage from 'utils/saveImage';
+import useLocalStorage from '../../utils/useLocalStorage';
 import getLastUpdated from '../../utils/getLastUpdated';
 import {
   ModalWrapper,
@@ -17,16 +19,12 @@ import {
   SaveImage,
 } from './Modal.Styles';
 
-function Modal({
-  isOpen,
-  content,
-  setModalOpen,
-  photos,
-  setPhotos,
-  handleSave,
-}) {
+function Modal({ isOpen, content, setModalOpen }) {
   const [lastUpdated, setLastUpdated] = useState('');
-  const [isSaved, setIsSaved] = useState(false);
+  const [localStoragePhotos, setLocalStoragePhotos] = useLocalStorage(
+    'savedImages',
+    []
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -47,6 +45,18 @@ function Modal({
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleSave = (content) => {
+    const imageExists = localStoragePhotos.find((ph) => ph.id === content.id);
+    if (imageExists) {
+      const photosArr = localStoragePhotos.filter((ph) => ph.id !== content.id);
+      setLocalStoragePhotos(photosArr);
+    }
+    if (!imageExists) {
+      const photosArr = [...localStoragePhotos, content];
+      setLocalStoragePhotos(photosArr);
+    }
   };
 
   if (!isOpen) return null;
@@ -74,9 +84,7 @@ function Modal({
         </TopNavBar>
         <Image src={content.urls.regular} alt={content.alt_description} />
         <Footer>
-          <SaveImage onClick={() => handleSave(content)}>
-            {isSaved ? ` remove save` : `save`}
-          </SaveImage>
+          <SaveImage onClick={() => handleSave(content)}>save</SaveImage>
         </Footer>
       </ModalContent>
     </ModalWrapper>,
