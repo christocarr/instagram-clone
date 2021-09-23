@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Photo, Modal, Card } from 'components';
 import { List, ListItem } from './PhotoList.Styles';
 
-function PhotoList({ photos, setPhotos, handleSave, match }) {
+function PhotoList({ photos }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [page, setPage] = useState('');
@@ -36,9 +36,9 @@ function PhotoList({ photos, setPhotos, handleSave, match }) {
         isOpen={modalOpen}
         content={modalContent}
         setModalOpen={setModalOpen}
-        setPhotos={setPhotos}
-        photos={photos}
-        handleSave={handleSave}
+        // setPhotos={setPhotos}
+        // photos={photos}
+        // handleSave={handleSave}
       />
     </List>
   );

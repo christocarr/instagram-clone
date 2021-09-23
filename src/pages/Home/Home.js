@@ -1,14 +1,29 @@
+import { useEffect } from 'react';
+import { getHomePhotos } from '../../store/homePageReducer/actions';
+import { connect } from 'react-redux';
 import InfiniteLoader from 'react-infinite-loader';
 import saveImage from 'utils/saveImage';
 import { Wrapper, PhotoList } from 'components';
 
-function Home({ data, getPhotos }) {
+function Home({ photos, getHomePhotos }) {
+  useEffect(() => {
+    getHomePhotos();
+  }, []);
+
   return (
     <Wrapper>
-      <PhotoList photos={data} handleSave={saveImage} />
-      <InfiniteLoader onVisited={() => getPhotos()} />
+      <PhotoList handleSave={saveImage} photos={photos} />
+      <InfiniteLoader onVisited={() => getHomePhotos()} />
     </Wrapper>
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  photos: state.homePhotos.photos,
+});
+
+const mapDispatchToProps = {
+  getHomePhotos,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
