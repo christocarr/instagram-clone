@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getUserData } from '../../store/userPageReducer/actions';
 import axios from 'axios';
 import InfiniteLoader from 'react-infinite-loader';
 import { Wrapper, PhotoList } from 'components';
@@ -15,19 +17,25 @@ import {
   UserCollections,
 } from './User.styles';
 
-function User({ data, getPhotos }) {
-  const [userData, setUserData] = useState(null);
+function User({ userData, match, getUserData }) {
+  // const [userData, setUserData] = useState(null);
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
 
   useEffect(() => {
-    setUserData(data[0]);
+    // setUserData(data[0]);
 
     if (userData) {
-      getFollowers(userData.user.links.followers);
-      getFollowing(userData.user.links.following);
+      getFollowers(userData.links.followers);
+      getFollowing(userData.links.following);
     }
-  }, [data, userData]);
+  }, [userData]);
+
+  useEffect(() => {
+    getUserData(match.params.username);
+  }, []);
+
+  console.log(userData);
 
   const getFollowers = async (baseUrl) => {
     const key = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
@@ -48,17 +56,14 @@ function User({ data, getPhotos }) {
       {userData && (
         <>
           <UserProfile>
-            <UserImage
-              src={userData.user.profile_image.large}
-              alt="unsplash user"
-            />
-            <UserName>{userData.user.name}</UserName>
-            <UserLink href={userData.user.portfolio_url}>
-              {userData.user.portfolio_url}
+            <UserImage src={userData.profile_image.large} alt="unsplash user" />
+            <UserName>{userData.name}</UserName>
+            <UserLink href={userData.portfolio_url}>
+              {userData.portfolio_url}
             </UserLink>
             <Container>
               <Box>
-                <Posts>{userData.user.total_photos}</Posts>
+                <Posts>{userData.total_photos}</Posts>
                 <p>Posts</p>
               </Box>
               <Box>
@@ -78,12 +83,18 @@ function User({ data, getPhotos }) {
               ))}
             </UserCollections>
           )}
-          <PhotoList photos={data} />
-          <InfiniteLoader onVisited={() => getPhotos()} />
+          <PhotoList photos={userData.photos} />
+          {/* <InfiniteLoader onVisited={() => getPhotos()} /> */}
         </>
       )}
     </Wrapper>
   );
 }
 
-export default User;
+const mapStateToProps = (state) => ({
+  userData: state.userData.userData[0],
+});
+
+const mapDispatchToProps = { getUserData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);
