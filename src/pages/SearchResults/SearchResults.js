@@ -17,7 +17,7 @@ import {
   LinkContainer,
   InfiniteLoaderContainer,
   StyledInfinteLoader,
-} from './SearchResults.Styles.js';
+} from './SearchResults.styles.js';
 
 function SearchResults({ data, getSearchPhotos, searchTerm }) {
   const [headerData, setHeaderData] = useState(null);
