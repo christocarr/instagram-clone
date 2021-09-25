@@ -1,12 +1,8 @@
 import axios from 'axios';
 import { actionTypes } from '../action-types';
 
-const {
-  GET_USER_DATA_PENDING,
-  GET_USER_DATA_SUCCESS,
-  GET_USER_DATA_ERROR,
-  SET_USER_NAME,
-} = actionTypes;
+const { GET_USER_DATA_PENDING, GET_USER_DATA_SUCCESS, GET_USER_DATA_ERROR } =
+  actionTypes;
 
 const accessKey = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
@@ -18,7 +14,6 @@ export const getUserData = (userName) => async (dispatch, getState) => {
     const { data } = await axios(
       `https://api.unsplash.com/search/users?client_id=${accessKey}&query=${userName}&per_page=10`
     );
-    console.log(data);
     dispatch({
       type: GET_USER_DATA_SUCCESS,
       payload: data.results,
@@ -30,11 +25,3 @@ export const getUserData = (userName) => async (dispatch, getState) => {
     });
   }
 };
-
-// export const setUserName = (userName) => async (dispatch, getState) => {
-//   console.log(userName);
-//   dispatch({
-//     type: SET_USER_NAME,
-//     payload: userName,
-//   });
-// };

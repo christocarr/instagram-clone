@@ -49,6 +49,7 @@ function SearchResults({ data, getSearchPhotos, searchTerm }) {
       <LinkNavigation>
         Top Posts
         <LinkContainer>
+          {/* WIP */}
           {/* <button onClick={() => getPhotos('photos')}>Photos</button>
           <button onClick={() => getPhotos('collections')}>Collections</button> */}
         </LinkContainer>
