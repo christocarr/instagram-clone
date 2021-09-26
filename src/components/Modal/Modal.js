@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-// import saveImage from 'utils/saveImage';
 import useLocalStorage from '../../utils/useLocalStorage';
 import getLastUpdated from '../../utils/getLastUpdated';
 import {
