@@ -1,9 +1,7 @@
-import useLocalStorage from 'utils/useLocalStorage';
+import { connect } from 'react-redux';
 import { Wrapper, PhotoList } from 'components';
 
-function Saved() {
-  const [photos, setPhotos] = useLocalStorage('savedImages', []);
-
+function Saved({ photos }) {
   return (
     <Wrapper>
       <PhotoList photos={photos} />
@@ -11,4 +9,6 @@ function Saved() {
   );
 }
 
-export default Saved;
+const mapStateToProps = (state) => ({ photos: state.togglePhoto.savedPhotos });
+
+export default connect(mapStateToProps)(Saved);
