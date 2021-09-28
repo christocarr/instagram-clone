@@ -15,8 +15,11 @@ function PhotoList({ photos }) {
       setPage('home');
     }
 
-    if (location.pathname.includes('search')) {
-      setPage('search');
+    if (
+      location.pathname.includes('search') ||
+      location.pathname.includes('saved')
+    ) {
+      setPage('gridLayout');
     }
   }, []);
 

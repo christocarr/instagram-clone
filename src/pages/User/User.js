@@ -18,13 +18,10 @@ import {
 } from './User.styles';
 
 function User({ userData, match, getUserData }) {
-  // const [userData, setUserData] = useState(null);
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
 
   useEffect(() => {
-    // setUserData(data[0]);
-
     if (userData) {
       getFollowers(userData.links.followers);
       getFollowing(userData.links.following);
@@ -34,8 +31,6 @@ function User({ userData, match, getUserData }) {
   useEffect(() => {
     getUserData(match.params.username);
   }, []);
-
-  console.log(userData);
 
   const getFollowers = async (baseUrl) => {
     const key = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
@@ -84,6 +79,7 @@ function User({ userData, match, getUserData }) {
             </UserCollections>
           )}
           <PhotoList photos={userData.photos} />
+          {/* WIP */}
           {/* <InfiniteLoader onVisited={() => getPhotos()} /> */}
         </>
       )}

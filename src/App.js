@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { Home, Saved, Explore, User, SearchResults } from 'pages';
-import { Navbar, Modal } from 'components';
+import { Navbar, Modal, ScrollToTop } from 'components';
 import GlobalStyle from 'globalStyles';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
     <>
       <GlobalStyle />
       <Navbar />
+      <ScrollToTop />
       <Switch location={background || location}>
         <Route exact path="/" component={Home} />
         <Route path="/saved" component={Saved} />

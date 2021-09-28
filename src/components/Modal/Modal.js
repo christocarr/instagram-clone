@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-// import saveImage from 'utils/saveImage';
-import useLocalStorage from '../../utils/useLocalStorage';
+import { connect } from 'react-redux';
+import { toggleSavePhoto } from '../../store/toggleSavePhotoReducer/action';
 import getLastUpdated from '../../utils/getLastUpdated';
 import {
   ModalWrapper,
@@ -19,12 +19,8 @@ import {
   SaveImage,
 } from './Modal.Styles';
 
-function Modal({ isOpen, content, setModalOpen }) {
+function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   const [lastUpdated, setLastUpdated] = useState('');
-  const [localStoragePhotos, setLocalStoragePhotos] = useLocalStorage(
-    'savedImages',
-    []
-  );
 
   useEffect(() => {
     if (isOpen) {
@@ -45,18 +41,6 @@ function Modal({ isOpen, content, setModalOpen }) {
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
-  };
-
-  const handleSave = (content) => {
-    const imageExists = localStoragePhotos.find((ph) => ph.id === content.id);
-    if (imageExists) {
-      const photosArr = localStoragePhotos.filter((ph) => ph.id !== content.id);
-      setLocalStoragePhotos(photosArr);
-    }
-    if (!imageExists) {
-      const photosArr = [...localStoragePhotos, content];
-      setLocalStoragePhotos(photosArr);
-    }
   };
 
   if (!isOpen) return null;
@@ -84,7 +68,7 @@ function Modal({ isOpen, content, setModalOpen }) {
         </TopNavBar>
         <Image src={content.urls.regular} alt={content.alt_description} />
         <Footer>
-          <SaveImage onClick={() => handleSave(content)}>save</SaveImage>
+          <SaveImage onClick={() => toggleSavePhoto(content)}>save</SaveImage>
         </Footer>
       </ModalContent>
     </ModalWrapper>,
@@ -92,4 +76,6 @@ function Modal({ isOpen, content, setModalOpen }) {
   );
 }
 
-export default Modal;
+const mapDispatchToProps = { toggleSavePhoto };
+
+export default connect(null, mapDispatchToProps)(Modal);

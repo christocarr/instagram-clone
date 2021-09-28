@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const List = styled.ul`
   ${(props) =>
-    props.page === 'search'
+    props.page === 'gridLayout'
       ? css`
           display: grid;
           grid-template-columns: repeat(3, 1fr);

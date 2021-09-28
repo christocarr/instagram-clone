@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getSearchPhotos } from '../../store/searchResultsPageReducer/actions';
 import { useLocation } from 'react-router-dom';
 import InfiniteLoader from 'react-infinite-loader';
-import saveImage from 'utils/saveImage';
 import { Wrapper, PhotoList } from 'components';
 import {
   Header,
@@ -49,12 +48,13 @@ function SearchResults({ data, getSearchPhotos, searchTerm }) {
       <LinkNavigation>
         Top Posts
         <LinkContainer>
+          {/* WIP */}
           {/* <button onClick={() => getPhotos('photos')}>Photos</button>
           <button onClick={() => getPhotos('collections')}>Collections</button> */}
         </LinkContainer>
       </LinkNavigation>
 
-      <PhotoList photos={data} handleSave={saveImage} />
+      <PhotoList photos={data} />
 
       <InfiniteLoaderContainer>
         <StyledInfinteLoader onVisited={() => getSearchPhotos(searchTerm)} />
