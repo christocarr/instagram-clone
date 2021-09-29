@@ -21,6 +21,10 @@ function PhotoList({ photos }) {
     ) {
       setPage('gridLayout');
     }
+
+    if (location.pathname.includes('explore')) {
+      setPage('masonry');
+    }
   }, []);
 
   const handleClick = (photo) => {
@@ -32,7 +36,11 @@ function PhotoList({ photos }) {
     <List page={page}>
       {photos.map((photo) => (
         <ListItem page={page} key={photo.id} onClick={() => handleClick(photo)}>
-          {page === 'home' ? <Card photo={photo} /> : <Photo photo={photo} />}
+          {page === 'home' ? (
+            <Card photo={photo} />
+          ) : (
+            <Photo photo={photo} page={page} />
+          )}
         </ListItem>
       ))}
       <Modal
