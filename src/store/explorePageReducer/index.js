@@ -21,9 +21,13 @@ export default function homePageReducer(state = initialState, action) {
         isLoading: true,
       };
     case GET_EXPLORE_PHOTOS_SUCCESS:
+      const arr = [...state.explorePhotos, ...action.payload];
+      const newArr = Array.from(new Set(arr.map((a) => a.id))).map((id) =>
+        arr.find((a) => a.id === id)
+      );
       return {
         ...state,
-        explorePhotos: [...state.explorePhotos, ...action.payload],
+        explorePhotos: newArr,
         isLoading: false,
         page: state.page + 1,
       };
