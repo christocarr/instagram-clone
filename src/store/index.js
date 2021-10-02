@@ -1,30 +1,18 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import homePhotos from './homePageReducer/index';
 import explorePhotos from './explorePageReducer/index';
 import searchPhotos from './searchResultsPageReducer/index';
 import userData from './userPageReducer/index';
 import togglePhoto from './toggleSavePhotoReducer/index';
 
-function saveToLocalStorage(state) {
-  try {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem('state', serialisedState);
-  } catch (err) {
-    console.warn(err);
-  }
-}
-
-function loadFromLocalStorage() {
-  try {
-    const serialisedState = localStorage.getItem('state');
-    if (serialisedState === null) return undefined;
-    return JSON.parse(serialisedState);
-  } catch (err) {
-    console.warn(err);
-    return undefined;
-  }
-}
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['togglePhoto'],
+};
 
 const reducers = combineReducers({
   homePhotos,
@@ -34,12 +22,10 @@ const reducers = combineReducers({
   togglePhoto,
 });
 
-const store = createStore(
-  reducers,
-  loadFromLocalStorage(),
-  applyMiddleware(thunk)
-);
+const pReducer = persistReducer(persistConfig, reducers);
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+const store = createStore(pReducer, applyMiddleware(thunk));
 
-export default store;
+const persister = persistStore(store);
+
+export { store, persister };

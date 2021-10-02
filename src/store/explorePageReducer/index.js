@@ -4,6 +4,7 @@ const initialState = {
   explorePhotos: [],
   isLoading: false,
   error: false,
+  page: 1,
 };
 
 const {
@@ -20,10 +21,15 @@ export default function homePageReducer(state = initialState, action) {
         isLoading: true,
       };
     case GET_EXPLORE_PHOTOS_SUCCESS:
+      const arr = [...state.explorePhotos, ...action.payload];
+      const newArr = Array.from(new Set(arr.map((a) => a.id))).map((id) =>
+        arr.find((a) => a.id === id)
+      );
       return {
         ...state,
-        explorePhotos: [...action.payload],
+        explorePhotos: newArr,
         isLoading: false,
+        page: state.page + 1,
       };
     case GET_EXPLORE_PHOTOS_ERROR:
       return {

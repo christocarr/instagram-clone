@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getExplorePhotos } from '../../store/explorePageReducer/actions';
 import { Wrapper, PhotoList } from 'components';
+import { InfiniteLoaderContainer, StyledInfinteLoader } from './Explore.Styles';
 
 function Explore({ photos, getExplorePhotos }) {
   useEffect(() => {
@@ -11,6 +12,9 @@ function Explore({ photos, getExplorePhotos }) {
   return (
     <Wrapper>
       <PhotoList photos={photos} />
+      <InfiniteLoaderContainer>
+        <StyledInfinteLoader onVisited={() => getExplorePhotos()} />
+      </InfiniteLoaderContainer>
     </Wrapper>
   );
 }

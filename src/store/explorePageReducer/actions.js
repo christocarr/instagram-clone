@@ -10,12 +10,14 @@ const {
 } = actionTypes;
 
 export const getExplorePhotos = () => async (dispatch, getState) => {
+  const state = getState();
+  const page = state.explorePhotos.page;
   try {
     dispatch({
       type: GET_EXPLORE_PHOTOS_PENDING,
     });
     const { data } = await axios(
-      `https://api.unsplash.com/photos/random?client_id=${accessKey}&count=30`
+      `https://api.unsplash.com/photos/random?client_id=${accessKey}&count=10&page=${page}`
     );
     dispatch({
       type: GET_EXPLORE_PHOTOS_SUCCESS,
