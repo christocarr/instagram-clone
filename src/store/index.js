@@ -7,6 +7,7 @@ import explorePhotos from './explorePageReducer/index';
 import searchPhotos from './searchResultsPageReducer/index';
 import userData from './userPageReducer/index';
 import togglePhoto from './toggleSavePhotoReducer/index';
+import collectionPhotos from './collectionPageReducer/index';
 
 const persistConfig = {
   key: 'root',
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   searchPhotos,
   userData,
   togglePhoto,
+  collectionPhotos,
 });
 
 const pReducer = persistReducer(persistConfig, reducers);

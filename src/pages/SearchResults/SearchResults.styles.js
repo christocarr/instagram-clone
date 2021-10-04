@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import InfiniteLoader from 'react-infinite-loader';
 
 export const Header = styled.div`
@@ -49,14 +49,23 @@ export const LinkNavigation = styled.div`
 
 export const LinkContainer = styled.div`
   justify-self: flex-end;
-  button {
-    border-style: none;
-    color: grey;
-    font-size: inherit;
-    background-color: #f8f8f8;
-    cursor: pointer;
-  }
-  button:first-of-type {
+`;
+
+export const Button = styled.button`
+  border-style: none;
+  font-size: inherit;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  ${(props) =>
+    props.active === 'true'
+      ? css`
+          color: black;
+        `
+      : css`
+          color: grey;
+        `}
+
+  &&:first-of-type {
     margin-right: 1em;
   }
 `;

@@ -9,6 +9,7 @@ export const Nav = styled.nav`
   height: 5em;
   background-color: white;
   border-bottom: 1px solid grey;
+  z-index: 1001;
 `;
 
 export const Ul = styled.ul`

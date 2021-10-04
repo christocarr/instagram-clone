@@ -19,4 +19,5 @@ export const Image = styled.img`
   object-fit: cover;
   vertical-align: bottom;
   object-position: center;
+  cursor: pointer;
 `;

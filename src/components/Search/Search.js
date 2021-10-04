@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import {
   getSearchPhotos,
   getSearchTerm,
+  clearSearch,
 } from '../../store/searchResultsPageReducer/actions';
 
-function Search({ getSearchPhotos, getSearchTerm }) {
+function Search({ getSearchPhotos, getSearchTerm, clearSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const history = useHistory();
@@ -17,11 +18,12 @@ function Search({ getSearchPhotos, getSearchTerm }) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    clearSearch();
     getSearchTerm(searchTerm);
     history.push('/');
     getSearchPhotos(searchTerm);
     setSearchTerm('');
-    history.push(`/search/${searchTerm}`);
+    history.push(`/search/photos/${searchTerm}`);
   };
 
   return (
@@ -36,6 +38,7 @@ const mapStateToProps = (state) => state;
 const mapDispatchToProps = {
   getSearchPhotos,
   getSearchTerm,
+  clearSearch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -11,18 +11,17 @@ function PhotoList({ photos }) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') {
+    const [, path] = location.pathname.split('/');
+
+    if (path === '') {
       setPage('home');
     }
 
-    if (
-      location.pathname.includes('search') ||
-      location.pathname.includes('saved')
-    ) {
+    if (path === 'search' || path === 'saved' || path === 'collection') {
       setPage('gridLayout');
     }
 
-    if (location.pathname.includes('explore')) {
+    if (path === 'explore') {
       setPage('masonry');
     }
   }, []);
@@ -47,9 +46,6 @@ function PhotoList({ photos }) {
         isOpen={modalOpen}
         content={modalContent}
         setModalOpen={setModalOpen}
-        // setPhotos={setPhotos}
-        // photos={photos}
-        // handleSave={handleSave}
       />
     </List>
   );
