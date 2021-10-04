@@ -36,18 +36,25 @@ function SearchResults({
   const history = useHistory();
 
   useEffect(() => {
+    const pathSplit = location.pathname.split('/');
     setHeaderData(photosData[8]);
-    setHashTag(location.pathname.split('/')[3]);
-  }, [photosData]);
+    setHashTag(pathSplit[3]);
+
+    if (pathSplit[2] === 'collections') {
+      setShowCollections(true);
+    }
+
+    if (pathSplit[2] === 'photos') {
+      setShowCollections(false);
+    }
+  }, [photosData, location]);
 
   const handlePhotosSearch = () => {
-    setShowCollections(false);
     history.push(`/search/photos/${searchTerm}`);
     getSearchPhotos(searchTerm);
   };
 
   const handleCollectionsSearch = () => {
-    setShowCollections(true);
     history.push(`/search/collections/${searchTerm}`);
     getSearchCollections(searchTerm);
   };
