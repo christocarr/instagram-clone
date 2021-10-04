@@ -47,9 +47,6 @@ function PhotoList({ photos }) {
         isOpen={modalOpen}
         content={modalContent}
         setModalOpen={setModalOpen}
-        // setPhotos={setPhotos}
-        // photos={photos}
-        // handleSave={handleSave}
       />
     </List>
   );

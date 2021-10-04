@@ -21,7 +21,7 @@ function Search({ getSearchPhotos, getSearchTerm }) {
     history.push('/');
     getSearchPhotos(searchTerm);
     setSearchTerm('');
-    history.push(`/search/${searchTerm}`);
+    history.push(`/search/photos/${searchTerm}`);
   };
 
   return (
