@@ -23,14 +23,13 @@ function Collection({
   const location = useLocation();
 
   useEffect(() => {
-    const pathSplit = location.pathname.split('/');
-    const collectionId = pathSplit[3];
+    const [, , path, collectionId] = location.pathname.split('/');
     getCollectionId(collectionId);
 
-    setSearchTerm(pathSplit[2]);
+    setSearchTerm(path);
 
     getCollectionPhotos();
-  }, [location.pathname]);
+  }, [location]);
 
   return (
     <Wrapper>

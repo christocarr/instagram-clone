@@ -36,15 +36,15 @@ function SearchResults({
   const history = useHistory();
 
   useEffect(() => {
-    const pathSplit = location.pathname.split('/');
+    const [, , path, searchQuery] = location.pathname.split('/');
+    setHashTag(searchQuery);
     setHeaderData(photosData[8]);
-    setHashTag(pathSplit[3]);
 
-    if (pathSplit[2] === 'collections') {
+    if (path === 'collections') {
       setShowCollections(true);
     }
 
-    if (pathSplit[2] === 'photos') {
+    if (path === 'photos') {
       setShowCollections(false);
     }
   }, [photosData, location]);
