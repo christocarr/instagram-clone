@@ -11,18 +11,21 @@ function PhotoList({ photos }) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') {
+    const pathSplit = location.pathname.split('/');
+
+    if (pathSplit[1] === '') {
       setPage('home');
     }
 
     if (
-      location.pathname.includes('search') ||
-      location.pathname.includes('saved')
+      pathSplit[1] === 'search' ||
+      pathSplit[1] === 'saved' ||
+      pathSplit[1] === 'collection'
     ) {
       setPage('gridLayout');
     }
 
-    if (location.pathname.includes('explore')) {
+    if (pathSplit[1] === 'explore') {
       setPage('masonry');
     }
   }, []);
