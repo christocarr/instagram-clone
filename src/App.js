@@ -1,5 +1,5 @@
 import { Switch, Route, useLocation } from 'react-router-dom';
-import { Home, Saved, Explore, User, SearchResults } from 'pages';
+import { Home, Saved, Explore, User, SearchResults, Collection } from 'pages';
 import { Navbar, Modal, ScrollToTop } from 'components';
 import GlobalStyle from 'globalStyles';
 
@@ -17,7 +17,14 @@ function App() {
         <Route path="/saved" component={Saved} />
         <Route path="/explore" component={Explore} />
         <Route path="/users/:username" component={User} />
-        <Route path="/search/:searchTerm" component={SearchResults} />
+        <Route
+          path="/search/:searchType/:searchTerm"
+          component={SearchResults}
+        />
+        <Route
+          path="/collection/:searchTerm/:collectionId"
+          component={Collection}
+        />
       </Switch>
       {background && <Route path="/modal/:id" component={Modal} />}
     </>
