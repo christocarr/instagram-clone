@@ -14,6 +14,7 @@ const {
   GET_SEARCH_PHOTOS_PENDING,
   GET_SEARCH_PHOTOS_SUCCESS,
   GET_SEARCH_PHOTOS_ERROR,
+  CLEAR_SEARCH,
   GET_SEARCH_PHOTOS_TOTAL,
   GET_SEARCH_COLLECTIONS_PENDING,
   GET_SEARCH_COLLECTIONS_SUCCESS,
@@ -40,6 +41,11 @@ export default function searchPageReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: true,
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        searchPhotos: [],
       };
     case GET_SEARCH_PHOTOS_TOTAL:
       return {

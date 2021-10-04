@@ -6,6 +6,7 @@ const {
   GET_SEARCH_PHOTOS_SUCCESS,
   GET_SEARCH_PHOTOS_ERROR,
   GET_SEARCH_PHOTOS_TOTAL,
+  CLEAR_SEARCH,
   GET_SEARCH_COLLECTIONS_PENDING,
   GET_SEARCH_COLLECTIONS_SUCCESS,
   GET_SEARCH_COLLECTIONS_ERROR,
@@ -67,5 +68,11 @@ export const getSearchTerm = (searchTerm) => (dispatch, getState) => {
   dispatch({
     type: SEARCH_TERM,
     payload: searchTerm,
+  });
+};
+
+export const clearSearch = () => (dispatch, getState) => {
+  dispatch({
+    type: CLEAR_SEARCH,
   });
 };
