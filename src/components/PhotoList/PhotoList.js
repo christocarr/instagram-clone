@@ -17,7 +17,12 @@ function PhotoList({ photos }) {
       setPage('home');
     }
 
-    if (path === 'search' || path === 'saved' || path === 'collection') {
+    if (
+      path === 'search' ||
+      path === 'saved' ||
+      path === 'collection' ||
+      path === 'users'
+    ) {
       setPage('gridLayout');
     }
 
