@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUserData } from '../../store/userPageReducer/actions';
+import {
+  getUserData,
+  getUserPhotos,
+  clearUserPhotos,
+} from '../../store/userPageReducer/actions';
 import axios from 'axios';
-import InfiniteLoader from 'react-infinite-loader';
 import { Wrapper, PhotoList } from 'components';
 import {
   UserProfile,
@@ -15,11 +18,22 @@ import {
   Followers,
   Following,
   UserCollections,
+  InfiniteLoaderContainer,
+  StyledInfinteLoader,
 } from './User.styles';
 
-function User({ userData, match, getUserData }) {
+function User({
+  userData,
+  match,
+  getUserData,
+  getUserPhotos,
+  userPhotos,
+  clearUserPhotos,
+}) {
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
+
+  const userName = match.params.username;
 
   useEffect(() => {
     if (userData) {
@@ -29,7 +43,9 @@ function User({ userData, match, getUserData }) {
   }, [userData]);
 
   useEffect(() => {
-    getUserData(match.params.username);
+    clearUserPhotos();
+    getUserData(userName);
+    getUserPhotos(userName);
   }, []);
 
   const getFollowers = async (baseUrl) => {
@@ -45,8 +61,6 @@ function User({ userData, match, getUserData }) {
     const response = await axios.get(url);
     setFollowing(response.data);
   };
-
-  console.log(userData);
 
   return (
     <Wrapper>
@@ -80,9 +94,10 @@ function User({ userData, match, getUserData }) {
               ))}
             </UserCollections>
           )}
-          <PhotoList photos={userData.photos} />
-          {/* WIP */}
-          {/* <InfiniteLoader onVisited={() => getPhotos()} /> */}
+          <PhotoList photos={userPhotos} />
+          <InfiniteLoaderContainer>
+            <StyledInfinteLoader onVisited={() => getUserPhotos(userName)} />
+          </InfiniteLoaderContainer>
         </>
       )}
     </Wrapper>
@@ -91,10 +106,9 @@ function User({ userData, match, getUserData }) {
 
 const mapStateToProps = (state) => ({
   userData: state.userData.user,
+  userPhotos: state.userData.photos,
 });
 
-// const mapStateToProps = (state) => console.log(state);
-
-const mapDispatchToProps = { getUserData };
+const mapDispatchToProps = { getUserData, getUserPhotos, clearUserPhotos };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
