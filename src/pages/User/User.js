@@ -46,6 +46,8 @@ function User({ userData, match, getUserData }) {
     setFollowing(response.data);
   };
 
+  console.log(userData);
+
   return (
     <Wrapper>
       {userData && (
@@ -88,8 +90,10 @@ function User({ userData, match, getUserData }) {
 }
 
 const mapStateToProps = (state) => ({
-  userData: state.userData.userData[0],
+  userData: state.userData.user,
 });
+
+// const mapStateToProps = (state) => console.log(state);
 
 const mapDispatchToProps = { getUserData };
 

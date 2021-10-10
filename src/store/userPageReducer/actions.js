@@ -12,11 +12,11 @@ export const getUserData = (userName) => async (dispatch, getState) => {
       type: GET_USER_DATA_PENDING,
     });
     const { data } = await axios(
-      `https://api.unsplash.com/search/users?client_id=${accessKey}&query=${userName}&per_page=10`
+      `https://api.unsplash.com/users/${userName}?client_id=${accessKey}`
     );
     dispatch({
       type: GET_USER_DATA_SUCCESS,
-      payload: data.results,
+      payload: data,
     });
   } catch (err) {
     console.error(err);

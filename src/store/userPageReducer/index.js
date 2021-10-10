@@ -1,7 +1,7 @@
 import { actionTypes } from '../action-types';
 
 const initialState = {
-  userData: [],
+  user: null,
   isLoading: false,
   error: false,
   userName: '',
@@ -14,7 +14,7 @@ const {
   SET_USER_NAME,
 } = actionTypes;
 
-export default function searchPageReducer(state = initialState, action) {
+export default function userPageReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER_DATA_PENDING:
       return {
@@ -24,7 +24,7 @@ export default function searchPageReducer(state = initialState, action) {
     case GET_USER_DATA_SUCCESS:
       return {
         ...state,
-        userData: [...action.payload],
+        user: action.payload,
         isLoading: false,
       };
     case GET_USER_DATA_ERROR:
