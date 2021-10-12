@@ -20,6 +20,15 @@ ul {
     padding: 0;
 }
 
+nav li a {
+  width: 30px;
+  height: 30px;
+  @media (min-width: 767px) {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 h2 {
   margin: 0;
 }
@@ -32,6 +41,7 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
 }
 
 `;

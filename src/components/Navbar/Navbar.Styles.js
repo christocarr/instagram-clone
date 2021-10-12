@@ -1,22 +1,73 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
   position: fixed;
-  justify-content: center;
+
   top: 0;
-  display: flex;
   width: 100%;
   height: 5em;
   background-color: white;
-  border-bottom: 1px solid grey;
   z-index: 1001;
+`;
+
+export const NavWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+  max-width: 768px;
+  margin: auto;
+`;
+
+export const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  height: 20px;
+  width: 70%;
+  margin-left: -5px;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  border-radius: 0.5em;
+  @media (min-width: 767px) {
+    height: 30px;
+  }
+`;
+
+export const SearchIcon = styled.svg`
+  width: 25px;
+
+  @media (min-width: 767px) {
+    width: 30px;
+    margin-right: 1em;
+  }
 `;
 
 export const Ul = styled.ul`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  max-width: 768px;
-  margin: 0 auto;
+  width: 30%;
+  margin-right: -5px;
+`;
+
+export const ListItem = styled.li`
+  display: flex;
+  justify-content: flex-end;
+  width: 33.33%;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  border-radius: 0.5em;
+  &:hover {
+    background-color: ${(props) => props.bgColor};
+  }
+  &.${(props) => props.activeClassName} {
+    background-color: ${(props) => props.bgColor};
+  }
+`;
+
+export const Icon = styled.svg`
+  width: 100%;
+  height: 100%;
 `;
