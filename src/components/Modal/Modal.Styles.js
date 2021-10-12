@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -16,14 +16,21 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
   border: 1px lightgrey solid;
   border-radius: 0.5em;
   background-color: white;
   padding: 1em;
+  ${(props) =>
+    props.width > props.height
+      ? css`
+          width: 90%;
+        `
+      : css`
+          height: 80%;
+        `}
 `;
 
 export const TopNavBar = styled.div`
@@ -64,9 +71,19 @@ export const ModalClose = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
+  height: auto;
   margin-bottom: 1em;
   border-radius: 0.5em;
+  ${(props) =>
+    props.width > props.height
+      ? css`
+          width: 100%;
+          height: auto;
+        `
+      : css`
+          height: 100%;
+          width: 100%;
+        `}
 `;
 
 export const Footer = styled.div``;

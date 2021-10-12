@@ -46,7 +46,12 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   if (!isOpen) return null;
   return createPortal(
     <ModalWrapper role="button" onClick={handleModalClose}>
-      <ModalContent role="button" onClick={handleModalContentClick}>
+      <ModalContent
+        role="button"
+        onClick={handleModalContentClick}
+        width={content.width}
+        height={content.height}
+      >
         <TopNavBar>
           <UserProfile>
             <UserImage
@@ -66,7 +71,12 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
             x
           </ModalClose>
         </TopNavBar>
-        <Image src={content.urls.regular} alt={content.alt_description} />
+        <Image
+          src={content.urls.regular}
+          alt={content.alt_description}
+          width={content.width}
+          height={content.height}
+        />
         <Footer>
           <SaveImage onClick={() => toggleSavePhoto(content)}>save</SaveImage>
         </Footer>
