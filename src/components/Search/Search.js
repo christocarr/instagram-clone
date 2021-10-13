@@ -29,7 +29,11 @@ function Search({ getSearchPhotos, getSearchTerm, clearSearch }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input value={searchTerm} onChange={handleChange} placeholder="search" />
+      <Input
+        value={searchTerm}
+        onChange={handleChange}
+        placeholder="Search..."
+      />
     </Form>
   );
 }

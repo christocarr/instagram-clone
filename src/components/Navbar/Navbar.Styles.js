@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   position: fixed;
-
   top: 0;
   width: 100%;
   height: 5em;
-  background-color: white;
+  background-color: hsl(100, 0%, 98%);
   z-index: 1001;
+  border-bottom: 1px solid hsl(100, 0%, 93%);
 `;
 
 export const NavWrapper = styled.div`
@@ -24,11 +24,11 @@ export const NavWrapper = styled.div`
 export const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  height: 20px;
+  /* height: 3px; */
   width: 70%;
   margin-left: -5px;
-  padding: 0.2em;
-  border: 1px solid lightgray;
+  padding: 0.5em 0 0.5em 2em;
+  background-color: white;
   border-radius: 0.5em;
   @media (min-width: 767px) {
     height: 30px;
@@ -59,6 +59,7 @@ export const ListItem = styled.li`
 
 export const StyledNavLink = styled(NavLink)`
   border-radius: 0.5em;
+  background-color: white;
   &:hover {
     background-color: ${(props) => props.bgColor};
   }
