@@ -38,7 +38,9 @@ function Card({ photo }) {
           </UserInfo>
         </UserProfile>
       </TopNavBar>
-      <Description>{`${photo.alt_description}.`}</Description>
+      {photo.alt_description && (
+        <Description>{`${photo.alt_description}.`}</Description>
+      )}
       <ImageContainer bgColor={photo.color}>
         <Image src={photo.urls.regular} alt={photo.alt_description} />
       </ImageContainer>
