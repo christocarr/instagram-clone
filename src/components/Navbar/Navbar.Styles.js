@@ -24,7 +24,6 @@ export const NavWrapper = styled.div`
 export const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  /* height: 3px; */
   width: 70%;
   margin-left: -5px;
   padding: 0.5em 0 0.5em 2em;
@@ -61,7 +60,7 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 0.5em;
   background-color: white;
   &:hover {
-    background-color: ${(props) => props.bcColor};
+    background-color: ${(props) => props.bgcolor};
   }
   &.${(props) => props.activeClassName} {
     background-color: ${(props) => props.bgcolor};
