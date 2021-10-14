@@ -6,7 +6,7 @@ import {
   clearUserPhotos,
 } from '../../store/userPageReducer/actions';
 import axios from 'axios';
-import { Wrapper, PhotoList } from 'components';
+import { Wrapper, PhotoList, InfiniteLoader } from 'components';
 import {
   UserProfile,
   UserImage,
@@ -18,8 +18,6 @@ import {
   Followers,
   Following,
   UserCollections,
-  InfiniteLoaderContainer,
-  StyledInfinteLoader,
 } from './User.styles';
 
 function User({
@@ -95,9 +93,7 @@ function User({
             </UserCollections>
           )}
           <PhotoList photos={userPhotos} />
-          <InfiniteLoaderContainer>
-            <StyledInfinteLoader onVisited={() => getUserPhotos(userName)} />
-          </InfiniteLoaderContainer>
+          <InfiniteLoader getPhotos={() => getUserPhotos(userName)} />
         </>
       )}
     </Wrapper>

@@ -5,12 +5,8 @@ import {
   getCollectionPhotos,
   getCollectionId,
 } from '../../store/collectionPageReducer/action';
-import { Wrapper, PhotoList } from 'components';
-import {
-  Heading,
-  InfiniteLoaderContainer,
-  StyledInfinteLoader,
-} from './Collection.Styles';
+import { Wrapper, PhotoList, InfiniteLoader } from 'components';
+import { Heading } from './Collection.Styles';
 
 function Collection({
   photos,
@@ -35,9 +31,7 @@ function Collection({
     <Wrapper>
       <Heading>{`${searchTerm} Collection no. ${collectionId}`}</Heading>
       <PhotoList photos={photos} />
-      <InfiniteLoaderContainer>
-        <StyledInfinteLoader onVisited={() => getCollectionPhotos()} />
-      </InfiniteLoaderContainer>
+      <InfiniteLoader getPhotos={() => getCollectionPhotos()} />
     </Wrapper>
   );
 }
