@@ -23,14 +23,18 @@ export const ModalContent = styled.div`
   border-radius: 0.5em;
   background-color: white;
   padding: 1em;
-  ${(props) =>
-    props.width > props.height
-      ? css`
-          width: 90%;
-        `
-      : css`
-          height: 80%;
-        `}
+  ${(props) => {
+    if (props.width > props.height)
+      return `
+    width: 90%;
+    height: auto;
+    `;
+    if (props.height > props.width)
+      return `
+    height: 85%;
+    width: auto;
+    `;
+  }}
 `;
 
 export const TopNavBar = styled.div`
@@ -72,19 +76,20 @@ export const ModalClose = styled.div`
 `;
 
 export const Image = styled.img`
-  height: auto;
   margin-bottom: 1em;
   border-radius: 0.5em;
-  ${(props) =>
-    props.width > props.height
-      ? css`
-          width: 100%;
-          height: auto;
-        `
-      : css`
-          height: 100%;
-          width: 100%;
-        `}
+  ${(props) => {
+    if (props.width > props.height)
+      return `
+      width: 100%;
+    height: auto;
+    `;
+    if (props.height > props.width)
+      return `
+    width: auto;
+    height: 85%;
+    `;
+  }}
 `;
 
 export const Icon = styled.svg`
@@ -92,7 +97,34 @@ export const Icon = styled.svg`
   height: 100%;
 `;
 
-export const Footer = styled.div``;
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 2em;
+`;
+
+export const Likes = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55px;
+  color: hsl(0, 100%, 50%);
+  font-weight: 600;
+`;
+
+export const DownLoadButton = styled.button`
+  width: 50%;
+  height: 100%;
+  color: white;
+  background-color: hsl(210, 100%, 50%);
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  &:hover {
+    background-color: hsl(220, 100%, 50%);
+  }
+`;
 
 export const SaveImage = styled.div`
   cursor: pointer;
