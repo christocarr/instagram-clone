@@ -61,10 +61,10 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 0.5em;
   background-color: white;
   &:hover {
-    background-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bcColor};
   }
   &.${(props) => props.activeClassName} {
-    background-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bgcolor};
   }
 `;
 

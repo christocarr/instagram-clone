@@ -67,6 +67,7 @@ export const LastUpdated = styled.p`
 `;
 
 export const ModalClose = styled.div`
+  width: 2em;
   cursor: pointer;
 `;
 
@@ -84,6 +85,11 @@ export const Image = styled.img`
           height: 100%;
           width: 100%;
         `}
+`;
+
+export const Icon = styled.svg`
+  width: 100%;
+  height: 100%;
 `;
 
 export const Footer = styled.div``;
