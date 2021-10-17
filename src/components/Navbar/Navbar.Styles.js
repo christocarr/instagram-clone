@@ -34,7 +34,7 @@ export const SearchBar = styled.div`
   }
 `;
 
-export const SearchIcon = styled.svg`
+export const SearchIconContainer = styled.div`
   width: 25px;
 
   @media (min-width: 767px) {
@@ -67,7 +67,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export const Icon = styled.svg`
+export const Image = styled.img`
   width: 100%;
   height: 100%;
 `;
