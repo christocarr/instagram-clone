@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { getHomePhotos } from '../../store/homePageReducer/actions';
 import { connect } from 'react-redux';
-import InfiniteLoader from 'react-infinite-loader';
-import { Wrapper, PhotoList } from 'components';
+import { Wrapper, PhotoList, InfiniteLoader } from 'components';
 
 function Home({ photos, getHomePhotos }) {
   useEffect(() => {
@@ -12,7 +11,7 @@ function Home({ photos, getHomePhotos }) {
   return (
     <Wrapper>
       <PhotoList photos={photos} />
-      <InfiniteLoader onVisited={() => getHomePhotos()} />
+      <InfiniteLoader getPhotos={() => getHomePhotos()} />
     </Wrapper>
   );
 }

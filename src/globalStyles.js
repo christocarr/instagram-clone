@@ -12,12 +12,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f8f8;
+  background-color: hsl(100, 0%, 97%);
 }
 
 ul {
     list-style: none;
     padding: 0;
+}
+
+nav li a {
+  width: 30px;
+  height: 30px;
+  @media (min-width: 767px) {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 h2 {
@@ -32,6 +41,7 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
 }
 
 `;

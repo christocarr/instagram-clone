@@ -16,8 +16,17 @@ import {
   ModalClose,
   Image,
   Footer,
+  Likes,
   SaveImage,
+  DownloadButton,
+  IconImage,
+  DownloadImage,
 } from './Modal.Styles';
+
+import CloseIcon from '../../assets/icons/close.svg';
+import LikesIcon from '../../assets/icons/Heart.svg';
+import SaveIcon from '../../assets/icons/Star.svg';
+import DownloadIcon from '../../assets/icons/download.svg';
 
 function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   const [lastUpdated, setLastUpdated] = useState('');
@@ -46,7 +55,12 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   if (!isOpen) return null;
   return createPortal(
     <ModalWrapper role="button" onClick={handleModalClose}>
-      <ModalContent role="button" onClick={handleModalContentClick}>
+      <ModalContent
+        role="button"
+        onClick={handleModalContentClick}
+        width={content.width}
+        height={content.height}
+      >
         <TopNavBar>
           <UserProfile>
             <UserImage
@@ -63,12 +77,34 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
           </UserProfile>
 
           <ModalClose role="button" onClick={handleModalClose}>
-            x
+            <IconImage src={CloseIcon} alt="close modal" />
           </ModalClose>
         </TopNavBar>
-        <Image src={content.urls.regular} alt={content.alt_description} />
+        <Image
+          src={content.urls.regular}
+          alt={content.alt_description}
+          width={content.width}
+          height={content.height}
+        />
         <Footer>
-          <SaveImage onClick={() => toggleSavePhoto(content)}>save</SaveImage>
+          <Likes>
+            <IconImage src={LikesIcon} alt="image likes total" />
+            {content.likes}
+          </Likes>
+          <DownloadButton
+            onClick={() => window.open(content.urls.regular, '_blank')}
+          >
+            <DownloadImage
+              src={DownloadIcon}
+              alt="download"
+              aria-hidden="true"
+              focusable="false"
+            />
+            Download
+          </DownloadButton>
+          <SaveImage onClick={() => toggleSavePhoto(content)}>
+            <IconImage src={SaveIcon} alt="save photo" />
+          </SaveImage>
         </Footer>
       </ModalContent>
     </ModalWrapper>,

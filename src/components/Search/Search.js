@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Form, Input } from './Search.Styles';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -27,9 +28,13 @@ function Search({ getSearchPhotos, getSearchTerm, clearSearch }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={searchTerm} onChange={handleChange} />
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        value={searchTerm}
+        onChange={handleChange}
+        placeholder="Search..."
+      />
+    </Form>
   );
 }
 

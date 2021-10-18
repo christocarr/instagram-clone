@@ -5,7 +5,7 @@ import {
   getSearchCollections,
 } from '../../store/searchResultsPageReducer/actions';
 import { Switch, Route, useLocation, useHistory, Link } from 'react-router-dom';
-import { Wrapper, PhotoList, CollectionList } from 'components';
+import { Wrapper, PhotoList, CollectionList, InfiniteLoader } from 'components';
 import {
   Header,
   HeaderDescription,
@@ -17,8 +17,6 @@ import {
   LinkNavigation,
   LinkContainer,
   Button,
-  InfiniteLoaderContainer,
-  StyledInfinteLoader,
 } from './SearchResults.styles.js';
 
 function SearchResults({
@@ -105,11 +103,7 @@ function SearchResults({
         </Route>
         <Route path="/search/photos/:searchTerm">
           <PhotoList photos={photosData} />
-          <InfiniteLoaderContainer>
-            <StyledInfinteLoader
-              onVisited={() => getSearchPhotos(searchTerm)}
-            />
-          </InfiniteLoaderContainer>
+          <InfiniteLoader getPhotos={() => getSearchPhotos(searchTerm)} />
         </Route>
       </Switch>
     </Wrapper>
