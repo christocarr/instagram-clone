@@ -15,17 +15,18 @@ import {
   LastUpdated,
   ModalClose,
   Image,
-  Icon,
   Footer,
   Likes,
   SaveImage,
-  DownLoadButton,
+  DownloadButton,
   IconImage,
+  DownloadImage,
 } from './Modal.Styles';
 
 import CloseIcon from '../../assets/icons/close.svg';
 import LikesIcon from '../../assets/icons/Heart.svg';
 import SaveIcon from '../../assets/icons/Star.svg';
+import DownloadIcon from '../../assets/icons/download.svg';
 
 function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   const [lastUpdated, setLastUpdated] = useState('');
@@ -90,11 +91,17 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
             <IconImage src={LikesIcon} alt="image likes total" />
             {content.likes}
           </Likes>
-          <DownLoadButton
+          <DownloadButton
             onClick={() => window.open(content.urls.regular, '_blank')}
           >
+            <DownloadImage
+              src={DownloadIcon}
+              alt="download"
+              aria-hidden="true"
+              focusable="false"
+            />
             Download
-          </DownLoadButton>
+          </DownloadButton>
           <SaveImage onClick={() => toggleSavePhoto(content)}>
             <IconImage src={SaveIcon} alt="save photo" />
           </SaveImage>

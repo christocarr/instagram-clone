@@ -118,7 +118,8 @@ export const Likes = styled.div`
   font-weight: 600;
 `;
 
-export const DownLoadButton = styled.button`
+export const DownloadButton = styled.button`
+  position: relative;
   width: 50%;
   height: 100%;
   color: white;
@@ -129,6 +130,14 @@ export const DownLoadButton = styled.button`
   &:hover {
     background-color: hsl(220, 100%, 50%);
   }
+`;
+
+export const DownloadImage = styled.img`
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  width: 1.5em;
+  height: 1.5em;
 `;
 
 export const SaveImage = styled.div`
