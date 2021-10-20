@@ -25,10 +25,17 @@ import {
 
 import CloseIcon from '../../assets/icons/close.svg';
 import LikesIcon from '../../assets/icons/Heart.svg';
-import SaveIcon from '../../assets/icons/Star.svg';
+import SaveIconEmpty from '../../assets/icons/Star_empty.svg';
+import SaveIconFull from '../../assets/icons/Star_full.svg';
 import DownloadIcon from '../../assets/icons/download.svg';
 
-function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
+function Modal({
+  isOpen,
+  content,
+  setModalOpen,
+  toggleSavePhoto,
+  savedPhotos,
+}) {
   const [lastUpdated, setLastUpdated] = useState('');
 
   useEffect(() => {
@@ -103,7 +110,11 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
             Download
           </DownloadButton>
           <SaveImage onClick={() => toggleSavePhoto(content)}>
-            <IconImage src={SaveIcon} alt="save photo" />
+            {savedPhotos[content.id] ? (
+              <IconImage src={SaveIconFull} alt="remove from saved photos" />
+            ) : (
+              <IconImage src={SaveIconEmpty} alt="save to saved photos" />
+            )}
           </SaveImage>
         </Footer>
       </ModalContent>
@@ -112,6 +123,14 @@ function Modal({ isOpen, content, setModalOpen, toggleSavePhoto }) {
   );
 }
 
+function getSavedPhotos(state) {
+  return state.togglePhoto.savedPhotos;
+}
+
+const mapStateToProps = (state) => ({
+  savedPhotos: getSavedPhotos(state),
+});
+
 const mapDispatchToProps = { toggleSavePhoto };
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

@@ -9,6 +9,12 @@ function Saved({ photos }) {
   );
 }
 
-const mapStateToProps = (state) => ({ photos: state.togglePhoto.savedPhotos });
+function getSavedPhotos(state) {
+  return Object.values(state.togglePhoto.savedPhotos);
+}
+
+const mapStateToProps = (state) => ({
+  photos: getSavedPhotos(state),
+});
 
 export default connect(mapStateToProps)(Saved);
