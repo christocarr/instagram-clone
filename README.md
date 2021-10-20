@@ -2,7 +2,7 @@
 
 Unsplash App is a React app created during a mentoring program with senior frontend developer - [Cristian Florea](https://www.linkedin.com/in/cristian-florea-396046123/)
 
-The app allows users to view photos, search for photos, explore random photos, and save photos from the Unsplash photography stock website.
+The app allows users to view photos, search for photos, explore random photos, and save photos from the Unsplash stock photography website.
 
 During the build process a workflow was created so that when a feature was completed, I created pull requests for Cristian to review and comment on any improvements or changes that could be made to my code. 
 
