@@ -59,7 +59,8 @@ export const ListItem = styled.li`
 export const StyledNavLink = styled(NavLink)`
   border-radius: 0.5em;
   background-color: white;
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${(props) => props.bgcolor};
   }
   &.${(props) => props.activeClassName} {
