@@ -8,11 +8,12 @@ import searchPhotos from './searchResultsPageReducer/index';
 import userData from './userPageReducer/index';
 import togglePhoto from './toggleSavePhotoReducer/index';
 import collectionPhotos from './collectionPageReducer/index';
+import theme from './themeReducer/index';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['togglePhoto'],
+  whitelist: ['togglePhoto', 'theme'],
 };
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   userData,
   togglePhoto,
   collectionPhotos,
+  theme,
 });
 
 const pReducer = persistReducer(persistConfig, reducers);
