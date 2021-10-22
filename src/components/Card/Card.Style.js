@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CardContent = styled.div`
   display: flex;
@@ -10,9 +10,18 @@ export const CardContent = styled.div`
   background-color: white;
   padding: 1em;
   margin-bottom: 30px;
-  box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
-  -webkit-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
-  -moz-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          background-color: hsl(100, 0%, 100%);
+          box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
+          -webkit-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
+          -moz-box-shadow: 0px 0px 12px 1px rgba(222, 222, 222, 0.2);
+        `
+      : css`
+          background-color: hsl(100, 0%, 60%);
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const TopNavBar = styled.div`
@@ -45,7 +54,14 @@ export const Name = styled.p`
 `;
 
 export const LastUpdated = styled.p`
-  color: hsl(0, 0%, 40%);
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          color: hsl(100, 0%, 0%);
+        `
+      : css`
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const Description = styled.p`

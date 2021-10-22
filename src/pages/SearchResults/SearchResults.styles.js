@@ -15,6 +15,14 @@ export const HeaderDescription = styled.div`
   justify-content: space-between;
   width: 80%;
   height: 100%;
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          color: hsl(100, 0%, 0%);
+        `
+      : css`
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const HeaderImageContainer = styled.div`
@@ -45,6 +53,14 @@ export const LinkNavigation = styled.div`
   justify-content: space-between;
   margin-left: -5px;
   margin-right: -5px;
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          color: hsl(100, 0%, 0%);
+        `
+      : css`
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const LinkContainer = styled.div`
@@ -54,15 +70,15 @@ export const LinkContainer = styled.div`
 export const Button = styled.button`
   border-style: none;
   font-size: inherit;
-  background-color: #f8f8f8;
+  background-color: inherit;
   cursor: pointer;
   ${(props) =>
     props.active === 'true'
       ? css`
-          color: black;
+          color: inherit;
         `
       : css`
-          color: grey;
+          color: inherit;
         `}
 
   &&:first-of-type {
