@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const UserProfile = styled.div`
   display: flex;
@@ -6,7 +6,14 @@ export const UserProfile = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  color: grey;
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          color: hsl(100, 0%, 0%);
+        `
+      : css`
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const UserImage = styled.img`
@@ -19,7 +26,7 @@ export const UserName = styled.p`
   margin-bottom: 1em;
   font-size: 1rem;
   font-weight: bolder;
-  color: black;
+  color: inherit;
 `;
 
 export const UserLink = styled.a`
@@ -44,19 +51,19 @@ export const Box = styled.div`
 export const Posts = styled.p`
   font-size: 1rem;
   font-weight: bolder;
-  color: black;
+  color: inherit;
 `;
 
 export const Followers = styled.p`
   font-size: 1rem;
   font-weight: bolder;
-  color: black;
+  color: inherit;
 `;
 
 export const Following = styled.p`
   font-size: 1rem;
   font-weight: bolder;
-  color: black;
+  color: inherit;
 `;
 
 export const UserCollections = styled.ul``;

@@ -8,3 +8,5 @@ export { default as Modal } from './Modal';
 export { default as Card } from './Card';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as InfiniteLoader } from './InfiniteLoader';
+export { default as ThemeToggler } from './ThemeToggler';
+export { default as Theme } from './Theme';

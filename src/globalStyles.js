@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -12,7 +12,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: hsl(100, 0%, 97%);
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          background-color: hsl(100, 0%, 97%);
+        `
+      : css`
+          background-color: hsl(100, 0%, 20%);
+        `}
 }
 
 ul {

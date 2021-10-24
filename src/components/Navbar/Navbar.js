@@ -1,4 +1,4 @@
-import { Search } from 'components';
+import { Search, ThemeToggler } from 'components';
 import {
   Nav,
   NavWrapper,
@@ -12,7 +12,6 @@ import {
 import SearchIcon from '../../assets/icons/Search.svg';
 import CameraIcon from '../../assets/icons/Camera.svg';
 import HeartIcon from '../../assets/icons/Heart_bulk.svg';
-import ThemeIcon from '../../assets/icons/Scan.svg';
 
 function Navbar() {
   return (
@@ -44,14 +43,7 @@ function Navbar() {
             </StyledNavLink>
           </ListItem>
           <ListItem>
-            <StyledNavLink
-              exact
-              to="/"
-              activeClassName="active"
-              bgcolor="#C0C0C0"
-            >
-              <Image src={ThemeIcon} alt="change theme" />
-            </StyledNavLink>
+            <ThemeToggler />
           </ListItem>
         </Ul>
       </NavWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Form = styled.form`
   width: 90%;
@@ -11,4 +11,16 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          background-color: hsl(100, 0%, 100%);
+        `
+      : css`
+          background-color: hsl(100, 0%, 60%);
+          color: hsl(100, 0%, 100%);
+          &::placeholder {
+            color: hsl(100, 0%, 100%);
+          }
+        `}
 `;

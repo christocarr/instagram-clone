@@ -7,7 +7,14 @@ export const ModalWrapper = styled.div`
   height: 100vh;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  background-color: rgba(100, 100, 100, 0.5);
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          background-color: rgba(100, 100, 100, 0.5);
+        `
+      : css`
+          background-color: rgba(100, 100, 100, 0.9);
+        `}
 `;
 
 export const ModalContent = styled.div`
@@ -19,7 +26,6 @@ export const ModalContent = styled.div`
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px lightgrey solid;
   border-radius: 0.5em;
   background-color: white;
   padding: 1em;
@@ -35,6 +41,15 @@ export const ModalContent = styled.div`
     width: auto;
     `;
   }}
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          background-color: hsl(100, 0%, 100%);
+        `
+      : css`
+          background-color: hsl(100, 0%, 20%);
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const TopNavBar = styled.div`
@@ -67,7 +82,14 @@ export const Name = styled.p`
 `;
 
 export const LastUpdated = styled.p`
-  color: hsl(0, 0%, 40%);
+  ${(props) =>
+    props.theme.theme === 'light'
+      ? css`
+          color: hsl(0, 0%, 40%); ;
+        `
+      : css`
+          color: hsl(100, 0%, 100%);
+        `}
 `;
 
 export const ModalClose = styled.div`
