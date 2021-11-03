@@ -2,11 +2,14 @@ import { connect } from 'react-redux';
 import { Wrapper, PhotoList } from 'components';
 
 function Saved({ photos }) {
-  return (
-    <Wrapper>
-      <PhotoList photos={photos} />
-    </Wrapper>
-  );
+  if (!photos.length)
+    return (
+      <Wrapper>
+        <h2>There Are No Saved Photos to Show</h2>
+        <p>Toggle the star icon on any modal to save or remove a photo.</p>
+      </Wrapper>
+    );
+  return <Wrapper>{photos && <PhotoList photos={photos} />}</Wrapper>;
 }
 
 function getSavedPhotos(state) {
