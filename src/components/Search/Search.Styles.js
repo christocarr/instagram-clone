@@ -5,7 +5,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  max-width: 100%;
   border: none;
   font-size: 1rem;
   &:focus {
