@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSavePhoto } from '../../store/toggleSavePhotoReducer/action';
 import getLastUpdated from '../../utils/getLastUpdated';
+import useWindowDimensions from 'utils/useWindowDimensions';
 import {
   ModalWrapper,
   ModalContent,
@@ -37,6 +38,7 @@ function Modal({
   savedPhotos,
 }) {
   const [lastUpdated, setLastUpdated] = useState('');
+  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     if (isOpen) {
