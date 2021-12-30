@@ -14,7 +14,6 @@ import {
   ImageContainer,
   Image,
   Footer,
-  SaveImage,
 } from './Card.Style';
 
 function Card({ photo }) {

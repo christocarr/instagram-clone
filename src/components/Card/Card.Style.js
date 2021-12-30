@@ -90,7 +90,3 @@ export const Image = styled.img`
 `;
 
 export const Footer = styled.div``;
-
-export const SaveImage = styled.div`
-  cursor: pointer;
-`;
