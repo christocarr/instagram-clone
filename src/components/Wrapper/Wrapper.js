@@ -1,7 +1,10 @@
+import { connect } from 'react-redux';
 import { WrapperDiv } from './Wrapper.Styles';
 
-function Wrapper({ children }) {
-  return <WrapperDiv>{children}</WrapperDiv>;
+function Wrapper({ theme, children }) {
+  return <WrapperDiv theme={theme}>{children}</WrapperDiv>;
 }
 
-export default Wrapper;
+const mapStateToProps = ({ theme }) => ({ theme });
+
+export default connect(mapStateToProps)(Wrapper);
