@@ -37,7 +37,7 @@ export const ModalContent = styled.div`
     `;
     if (props.height > props.width)
       return `
-    height: 85%;
+    height: 80%;
     width: auto;
     `;
   }}
