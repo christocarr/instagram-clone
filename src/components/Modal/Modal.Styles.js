@@ -30,15 +30,25 @@ export const ModalContent = styled.div`
   background-color: white;
   padding: 1em;
   ${(props) => {
-    if (props.width > props.height)
+    if (props.width > props.height && props.windowWidth < 570)
       return `
     width: 90%;
     height: auto;
     `;
     if (props.height > props.width)
       return `
-    height: 80%;
+    height: 72%;
     width: auto;
+    `;
+    if (props.windowWidth > 570 && props.windowWidth < 1024)
+      return `
+    width: 75%;
+    height: auto;
+    `;
+    if (props.windowWidth > 1024)
+      return `
+    width: 60%;
+    height: auto;
     `;
   }}
   ${(props) =>

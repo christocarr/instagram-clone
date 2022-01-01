@@ -38,7 +38,7 @@ function Modal({
   savedPhotos,
 }) {
   const [lastUpdated, setLastUpdated] = useState('');
-  const { width, height } = useWindowDimensions();
+  const { windowWidth, windowHeight } = useWindowDimensions();
 
   useEffect(() => {
     if (isOpen) {
@@ -69,6 +69,7 @@ function Modal({
         onClick={handleModalContentClick}
         width={content.width}
         height={content.height}
+        windowWidth={windowWidth}
       >
         <TopNavBar>
           <UserProfile>
