@@ -9,6 +9,7 @@ import {
   Image,
   SearchIconContainer,
 } from './Navbar.Styles';
+import ExploreIcon from '../../assets/icons/Discovery.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
 import CameraIcon from '../../assets/icons/Camera.svg';
 import HeartIcon from '../../assets/icons/Heart_bulk.svg';
@@ -17,20 +18,29 @@ function Navbar() {
   return (
     <Nav>
       <NavWrapper>
-        <SearchBar>
-          <SearchIconContainer>
-            <Image src={SearchIcon} alt="search photos" />
-          </SearchIconContainer>
-          <Search />
-        </SearchBar>
         <Ul>
+          <ListItem>
+            <StyledNavLink to="/" activeClassName="active">
+              <Image src={CameraIcon} alt="index page icon" />
+            </StyledNavLink>
+          </ListItem>
+
+          <ListItem>
+            <SearchBar>
+              <SearchIconContainer>
+                <Image src={SearchIcon} alt="search photos" />
+              </SearchIconContainer>
+              <Search />
+            </SearchBar>
+          </ListItem>
+
           <ListItem>
             <StyledNavLink
               to="/explore"
               activeClassName="active"
               bgcolor="#6495ED"
             >
-              <Image src={CameraIcon} alt="explore photos" />
+              <Image src={ExploreIcon} alt="explore photos" />
             </StyledNavLink>
           </ListItem>
           <ListItem>

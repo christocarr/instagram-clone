@@ -33,11 +33,14 @@ export const SearchBar = styled.div`
   display: flex;
   align-items: center;
   width: 70%;
+  height: 20px;
   margin-left: -5px;
-  padding: 0.5em 0 0.5em 2em;
+  padding: 0.5em 0 0.5em 0;
   border-radius: 0.5em;
   @media (min-width: 767px) {
     height: 30px;
+    width: 100%;
+    padding-left: 2em;
   }
 
   ${(props) =>
@@ -51,10 +54,10 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchIconContainer = styled.div`
-  width: 25px;
+  /* width: 25px; */
 
   @media (min-width: 767px) {
-    width: 30px;
+    /* width: 30px; */
     margin-right: 1em;
   }
 `;
@@ -62,14 +65,15 @@ export const SearchIconContainer = styled.div`
 export const Ul = styled.ul`
   display: flex;
   align-items: center;
-  width: 30%;
+  justify-content: space-between;
+  width: 100%;
   margin-right: -5px;
 `;
 
 export const ListItem = styled.li`
   display: flex;
   justify-content: flex-end;
-  width: 33.33%;
+  /* width: 33.33%; */
 `;
 
 export const StyledNavLink = styled(NavLink)`

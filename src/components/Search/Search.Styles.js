@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Form = styled.form`
-  width: 90%;
+  width: 80%;
 `;
 
 export const Input = styled.input`
