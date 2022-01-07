@@ -32,14 +32,13 @@ export const NavWrapper = styled.div`
 export const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 100%;
   height: 20px;
   margin-left: -5px;
   padding: 0.5em 0 0.5em 0;
   border-radius: 0.5em;
   @media (min-width: 767px) {
     height: 30px;
-    width: 100%;
     padding-left: 2em;
   }
 
@@ -54,10 +53,7 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchIconContainer = styled.div`
-  /* width: 25px; */
-
   @media (min-width: 767px) {
-    /* width: 30px; */
     margin-right: 1em;
   }
 `;
@@ -73,7 +69,6 @@ export const Ul = styled.ul`
 export const ListItem = styled.li`
   display: flex;
   justify-content: flex-end;
-  /* width: 33.33%; */
 `;
 
 export const StyledNavLink = styled(NavLink)`
