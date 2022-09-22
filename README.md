@@ -1,6 +1,6 @@
 # Unsplash App
 
-## Overview
+### Overview
 
 Unsplash App is a React app created during a mentoring program with senior frontend developer - [Cristian Florea](https://www.linkedin.com/in/cristian-florea-396046123/)
 
@@ -8,13 +8,13 @@ During the build process a workflow was created so that when a feature was compl
 
 While creating Unsplash App I solidified and improved my knowledge of React, Redux, React router, and styled-components.
 
-## Features
+### Features
 
 The app allows users to view photos, search for photos, explore random photos, and save photos from the Unsplash stock photography website.
 
 The app is available to view [here](https://instagram-clone-sandy.vercel.app/)
 
-## Running the project locally
+### Running the project locally
 
 The project requires environment variables for the it to run as it uses the Unsplash API. 
 
