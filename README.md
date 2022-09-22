@@ -19,7 +19,7 @@ The app is available to view [here](https://instagram-clone-sandy.vercel.app/)
 The project requires environment variables for the it to run as it uses the Unsplash API. 
 
 1. Clone the repo to your machine
-2. Add environment varialbes 
+2. Add environment variables 
 3. Run ```npm install``` to install the dependencies
 4. Run ```npm run start``` to start 
 
